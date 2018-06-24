@@ -1,5 +1,7 @@
 #ifndef ANIMAL_H
 #define ANIMAL_H
+#include "tratador.h"
+#include "veterinario.h"
 
 class Animal
 {

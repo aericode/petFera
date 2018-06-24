@@ -1,4 +1,4 @@
-Sources=main.cpp
+Sources=main.cpp funcionario.cpp tratador.cpp veterinario.cpp
 Executable=PetFera
 
 CFlags=-c -Wall -g -Iinc
