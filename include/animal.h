@@ -2,6 +2,7 @@
 #define ANIMAL_H
 #include "tratador.h"
 #include "veterinario.h"
+#include <string>
 
 class Animal
 {

@@ -1,1 +1,1 @@
-#include "tratador.h"
+#include "../include/tratador.h"

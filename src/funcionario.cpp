@@ -1,16 +1,17 @@
-#include "funcionario.h"
+#include "../include/funcionario.h"
+#include <string>
 
-int funcionario::getId(){return m_id;}
-void funcionario::setId(int id){m_id = id;}
-std::string funcionario::getNome(){return m_nome;}
-void funcionario::setNome(std::string nome){m_nome = nome;}
-std::string funcionario::getCpf(){return m_cpf;}
-void funcionario::setCpf(std::string cpf){m_cpf = cpf;}
-short int funcionario::getIdade(){return m_idade;}
-void funcionario::setIdade(short int){m_idade = idade;}
-char funcionario::getTipo_sanguineo(){return m_tipo_sanguineo;}
-void funcionario::setTipo_sanguineo(char tipo_sanguineo){m_tipo_sanguineo = tipo_sanguineo;}
-char funcionario::getFatorRH(){return m_FatorRH;}
-void funcionario::setFatorRH(char fatorRH){m_FatorRH = fatorRH;}
-std::string funcionario::getEspecialidade(){return m_especialidade;}
-void funcionario::setEspecialidade(std::string especialidade){m_especialidade = especialidade;}
+int Funcionario::getId(){return m_id;}
+void Funcionario::setId(int id){m_id = id;}
+std::string Funcionario::getNome(){return m_nome;}
+void Funcionario::setNome(std::string nome){m_nome = nome;}
+std::string Funcionario::getCpf(){return m_cpf;}
+void Funcionario::setCpf(std::string cpf){m_cpf = cpf;}
+short int Funcionario::getIdade(){return m_idade;}
+void Funcionario::setIdade(short int idade){m_idade = idade;}
+char Funcionario::getTipo_sanguineo(){return m_tipo_sanguineo;}
+void Funcionario::setTipo_sanguineo(char tipo_sanguineo){m_tipo_sanguineo = tipo_sanguineo;}
+char Funcionario::getFatorRH(){return m_fatorRH;}
+void Funcionario::setFatorRH(char fatorRH){m_fatorRH = fatorRH;}
+std::string Funcionario::getEspecialidade(){return m_especialidade;}
+void Funcionario::setEspecialidade(std::string especialidade){m_especialidade = especialidade;}

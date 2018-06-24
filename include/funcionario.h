@@ -1,5 +1,6 @@
 #ifndef FUNCIONARIO_H
 #define FUNCIONARIO_H
+#include <string>
 
 class Funcionario
 {
@@ -16,8 +17,8 @@ public:
 	void setId(int);
 	std::string getNome();
 	void setNome(std::string);
-	std::string getCpf(std::string);
-	void setCpf(int);
+	std::string getCpf();
+	void setCpf(std::string);
 	short int getIdade();
 	void setIdade(short int);
 	char getTipo_sanguineo();

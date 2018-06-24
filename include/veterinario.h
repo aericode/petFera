@@ -5,7 +5,7 @@
 class Veterinario : public Funcionario
 {
 
-}
+};
 
 
 #endif
