@@ -21,8 +21,8 @@ public:
 	void setCpf(std::string);
 	short int getIdade();
 	void setIdade(short int);
-	char getTipo_sanguineo();
-	void setTipo_sanguineo(char);
+	short std::string getTipo_sanguineo();
+	void setTipo_sanguineo(short std::string);
 	char getFatorRH();
 	void setFatorRH(char);
 	std::string getEspecialidade();
