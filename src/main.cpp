@@ -9,9 +9,36 @@
 int main(){
 
 	Animal ferinha;
+	Veterinario vet1;
+	Tratador trat1;
 
-	ferinha.setNome("Gatimon");
+	vet1.setNome("Adalberto");
+	trat1.setNome("Felisberto");
+
+	ferinha.setBatismo("Gatimon");
+	std::cout<<ferinha.getBatismo()<<std::endl;
+	ferinha.setClasse("Mamifero");
+	std::cout<<ferinha.getClasse()<<std::endl;
+	ferinha.setCientifico("Felis catus");
+	std::cout<<ferinha.getCientifico()<<std::endl;
+	ferinha.setSexo('F');
+	std::cout<<ferinha.getSexo()<<std::endl;
+	ferinha.setTamanho(0.89);
+	std::cout<<ferinha.getTamanho()<<std::endl;
+	ferinha.setDieta("Whiskas sachê");
+	std::cout<<ferinha.getDieta()<<std::endl;
+	ferinha.setNome("Gato");
 	std::cout<<ferinha.getNome()<<std::endl;
+	ferinha.setVeterinario(vet1);
+	ferinha.setTratador(trat1);
+
+	Veterinario aux1 = ferinha.getVeterinario();
+	Tratador aux2 = ferinha.getTratador();
+
+	std::cout<<aux1.getNome()<<std::endl;
+	std::cout<<aux2.getNome()<<std::endl;
+
+
 
     return 0;
 }

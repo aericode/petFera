@@ -32,12 +32,13 @@ public:
 	void setTamanho(float);
 	std::string getDieta();
 	void setDieta(std::string);
+	std::string getBatismo();
+	void setBatismo(std::string);
+
 	Veterinario getVeterinario();
 	void setVeterinario(Veterinario);
 	Tratador getTratador();
 	void setTratador(Tratador);
-	std::string getBatismo();
-	void setBatismo(std::string);
 
 };
 

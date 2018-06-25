@@ -1,3 +1,5 @@
+#include "../include/funcionario.h"
+#include "../include/veterinario.h"
 #include "../include/animal.h"
 
 int Animal::getId(){return m_id;}
@@ -14,9 +16,9 @@ float Animal::getTamanho(){return m_tamanho;}
 void Animal::setTamanho(float tamanho){m_tamanho = tamanho;}
 std::string Animal::getDieta(){return m_dieta;}
 void Animal::setDieta(std::string dieta){m_dieta = dieta;}
+std::string Animal::getBatismo(){return m_batismo;}
+void Animal::setBatismo(std::string batismo){m_batismo = batismo;}
 Veterinario Animal::getVeterinario(){return m_veterinario;}
 void Animal::setVeterinario(Veterinario veterinario){m_veterinario = veterinario;}
 Tratador Animal::getTratador(){return m_tratador;}
 void Animal::setTratador(Tratador tratador){m_tratador = tratador;}
-std::string Animal::getBatismo(){return m_batismo;}
-void Animal::setBatismo(std::string batismo){m_batismo = batismo;}
