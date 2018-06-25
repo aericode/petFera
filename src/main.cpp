@@ -5,6 +5,7 @@
 #include "../include/veterinario.h"
 #include "../include/tratador.h"
 #include "../include/animal.h"
+#include "../include/anfibio.h"
 
 int main(){
 
