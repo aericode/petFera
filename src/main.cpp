@@ -6,6 +6,7 @@
 #include "../include/tratador.h"
 #include "../include/animal.h"
 #include "../include/anfibio.h"
+#include "../include/mamifero.h"
 
 int main(){
 
