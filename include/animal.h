@@ -7,16 +7,37 @@
 class Animal
 {
 protected:
-	int id;
-	std::string classe;
-	std::string nome; //especie do animal
-	std::string cientifico;
-	char sexo;
-	float tamanho;
-	std::string dieta;
-	Veterinario veterinario;
-	Tratador tratador;
-	std::string batismo;
+	int m_id;
+	std::string m_classe;
+	std::string m_nome; //especie do animal
+	std::string m_cientifico;
+	char m_sexo;
+	float m_tamanho;
+	std::string m_dieta;
+	Veterinario m_veterinario;
+	Tratador m_tratador;
+	std::string m_batismo;
+public:
+	int getId();
+	void setId(int);
+	std::string getClasse();
+	void setClasse(std::string);
+	std::string getNome();
+	void setNome(std::string);
+	std::string getCientifico();
+	void setCientifico(std::string);
+	char getSexo();
+	void setSexo(char);
+	float getTamanho();
+	void setTamanho(float);
+	std::string getDieta();
+	void setDieta(std::string);
+	Veterinario getVeterinario();
+	void setVeterinario(Veterinario);
+	Tratador getTratador();
+	void setTratador(Tratador);
+	std::string getBatismo();
+	void setBatismo(std::string);
 
 };
 
