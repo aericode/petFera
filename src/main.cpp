@@ -11,6 +11,8 @@
 #include "../include/animalSilvestre.h"
 #include "../include/exotico.h"
 #include "../include/nativo.h"
+#include "../include/aveExotica.h"
+#include "../include/aveNativa.h"
 
 int main(){
 
@@ -22,7 +24,7 @@ int main(){
 	vet1.setNome("Adalberto");
 	trat1.setNome("Felisberto");
 	
-	
+
 	ferinha.setBatismo("Gatimon");
 	std::cout<<ferinha.getBatismo()<<std::endl;
 	ferinha.setClasse("Mamifero");

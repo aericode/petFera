@@ -1,4 +1,4 @@
-Sources=main.cpp funcionario.cpp tratador.cpp veterinario.cpp animal.cpp anfibio.cpp mamifero.cpp reptil.cpp ave.cpp animalSilvestre.cpp nativo.cpp exotico.cpp
+Sources=main.cpp funcionario.cpp tratador.cpp veterinario.cpp animal.cpp anfibio.cpp mamifero.cpp reptil.cpp ave.cpp animalSilvestre.cpp nativo.cpp exotico.cpp aveExotica.cpp
 Executable=PetFera
 
 CFlags=-c -Wall -g -Iinc
