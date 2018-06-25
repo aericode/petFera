@@ -5,12 +5,13 @@
 #include "../include/veterinario.h"
 #include "../include/tratador.h"
 #include "../include/animal.h"
+#include "../include/reptil.h"
 #include "../include/anfibio.h"
 #include "../include/mamifero.h"
 
 int main(){
 
-	Animal ferinha;
+	Reptil ferinha;
 	Veterinario vet1;
 	Tratador trat1;
 
@@ -33,6 +34,8 @@ int main(){
 	std::cout<<ferinha.getNome()<<std::endl;
 	ferinha.setVeterinario(vet1);
 	ferinha.setTratador(trat1);
+	ferinha.setTipo_veneno("Moidida :3");
+	std::cout<<ferinha.getTipo_veneno()<<std::endl;
 
 	Veterinario aux1 = ferinha.getVeterinario();
 	Tratador aux2 = ferinha.getTratador();
