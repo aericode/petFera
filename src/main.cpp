@@ -34,8 +34,6 @@ int main(){
 	std::cout<<ferinha.getNome()<<std::endl;
 	ferinha.setVeterinario(vet1);
 	ferinha.setTratador(trat1);
-	ferinha.setTipo_veneno("Moidida :3");
-	std::cout<<ferinha.getTipo_veneno()<<std::endl;
 
 	Veterinario aux1 = ferinha.getVeterinario();
 	Tratador aux2 = ferinha.getTratador();
