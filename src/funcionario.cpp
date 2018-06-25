@@ -9,8 +9,8 @@ std::string Funcionario::getCpf(){return m_cpf;}
 void Funcionario::setCpf(std::string cpf){m_cpf = cpf;}
 short int Funcionario::getIdade(){return m_idade;}
 void Funcionario::setIdade(short int idade){m_idade = idade;}
-short std::string Funcionario::getTipo_sanguineo(){return m_tipo_sanguineo;}
-void Funcionario::setTipo_sanguineo(short std::string tipo_sanguineo){m_tipo_sanguineo = tipo_sanguineo;}
+std::string Funcionario::getTipo_sanguineo(){return m_tipo_sanguineo;}
+void Funcionario::setTipo_sanguineo(std::string tipo_sanguineo){m_tipo_sanguineo = tipo_sanguineo;}
 char Funcionario::getFatorRH(){return m_fatorRH;}
 void Funcionario::setFatorRH(char fatorRH){m_fatorRH = fatorRH;}
 std::string Funcionario::getEspecialidade(){return m_especialidade;}

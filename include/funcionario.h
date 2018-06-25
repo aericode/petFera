@@ -9,7 +9,7 @@ protected:
 	std::string m_nome;
 	std::string m_cpf;
 	short int m_idade;
-	char m_tipo_sanguineo;
+	std::string m_tipo_sanguineo;
 	char m_fatorRH;
 	std::string m_especialidade;
 public:
@@ -21,8 +21,8 @@ public:
 	void setCpf(std::string);
 	short int getIdade();
 	void setIdade(short int);
-	short std::string getTipo_sanguineo();
-	void setTipo_sanguineo(short std::string);
+	std::string getTipo_sanguineo();
+	void setTipo_sanguineo(std::string);
 	char getFatorRH();
 	void setFatorRH(char);
 	std::string getEspecialidade();
