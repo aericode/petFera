@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <map>
 
 #include "../include/funcionario.h"
 #include "../include/veterinario.h"
@@ -20,6 +21,8 @@ int main(){
 	Exotico fera;
 	Veterinario vet1;
 	Tratador trat1;
+	std::map <Animal, int> animal_db;
+	std::map <Funcionario, int> funcionario_db; 
 
 	vet1.setNome("Adalberto");
 	trat1.setNome("Felisberto");
