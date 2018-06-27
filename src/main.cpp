@@ -21,13 +21,13 @@ int main(){
 	Exotico fera;
 	Veterinario vet1;
 	Tratador trat1;
-	std::map <Animal, int> animal_db;
-	std::map <Funcionario, int> funcionario_db; 
+	std::map <int, Animal> animal_db;
+	std::map <int, Funcionario> funcionario_db; 
 
 	vet1.setNome("Adalberto");
 	trat1.setNome("Felisberto");
 	
-
+	ferinha.setId(0206);
 	ferinha.setBatismo("Gatimon");
 	std::cout<<ferinha.getBatismo()<<std::endl;
 	ferinha.setClasse("Mamifero");
@@ -51,9 +51,13 @@ int main(){
 	std::cout<<aux1.getNome()<<std::endl;
 	std::cout<<aux2.getNome()<<std::endl;
 	
-
 	fera.setIbama("12345");
 	std::cout<<fera.getIbama()<<std::endl;
+
+	animal_db[ferinha.getId()] = ferinha;
+
+	std::cout<<animal_db[0206].getBatismo()<<std::endl;
+
 
     return 0;
 }
