@@ -6,7 +6,6 @@
 
 Funcionario::Funcionario(){
 
-	//int temp_int; REATIVAR APOS CRIAR UMA CLASSE CONTAINER PARA OS _DB
 	std::string temp;
 	std::string::size_type sz; // alias do size_t de string
 
@@ -32,7 +31,7 @@ Funcionario::Funcionario(){
 
 	//IDADE
 	getline(ip,temp,';');
-	//m_idade = std::stoi(temp,&sz);//converte a string temp em short int int
+	m_idade = (short)std::stoi(temp,&sz);//converte a string temp em int
 
 	//TIPO SANGUINEO
 	getline(ip,m_tipo_sanguineo,';');
