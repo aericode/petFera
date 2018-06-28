@@ -17,6 +17,7 @@ protected:
 	Veterinario m_veterinario;
 	Tratador m_tratador;
 	std::string m_batismo;
+	
 public:
 	Animal();
 	~Animal();

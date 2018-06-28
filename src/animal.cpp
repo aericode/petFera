@@ -7,20 +7,57 @@
 #include "../include/animal.h"
 
 Animal::Animal(){
-	std::string converter;
+
+	//int temp_int; REATIVAR APOS CRIAR UMA CLASSE CONTAINER PARA OS _DB
+	std::string temp;
 	std::string::size_type sz; // alias do size_t de string
 
 	std::ifstream ip("./data/animal_db.csv");
-
-	if(ip.is_open()){
+	
+	if(!ip.is_open()){
 		std::cout << "arquivo animal_db.csv aberto, feche-o para completar a operacao"<<std::endl;
 	}
-	getline(ip,converter,';');
-	std::cout<<converter<<std::endl;
-	m_id = std::stoi(converter,&sz);
-	std::cout<<m_id<<std::endl;
+	
+
+	//ID
+	getline(ip,temp,';');
+	m_id = std::stoi(temp,&sz);//converte a string temp em int
+
+	//CLASSE
+	getline(ip,m_classe,';');
+
+	//NOME (da especie)
+	getline(ip,m_nome,';');
+
+	//NOME CIENTIFICO
+	getline(ip,m_cientifico,';');	
+
+	//SEXO
+	getline(ip,temp,';');
+	m_sexo = *temp.c_str();//converte a string temp em char
+
+	//TAMANHO
+	getline(ip,temp,';');
+	m_tamanho = ::atof(temp.c_str());//converte a string temp em float
+
+	//DIETA
+	getline(ip,m_dieta,';');
+
+	//VETERINARIO
+	//getline(ip,temp,';');
+	//temp_int = std::stoi(temp,&sz);
+	//m_veterinario = funcionario_db[temp_int]; TODO: settar animal como friend do container com o map funcionario_db
+
+	//VETERINARIO
+	//getline(ip,temp,';');
+	//temp_int = std::stoi(temp,&sz);
+	//m_tratador = funcionario_db[temp_int]; TODO: settar animal como friend do container com o map funcionario_db
+
+	//BATISMO
+	getline(ip,m_batismo,';');
 
 }
+
 Animal::~Animal(){}
 int Animal::getId(){return m_id;}
 void Animal::setId(int id){m_id = id;}
