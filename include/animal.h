@@ -18,6 +18,8 @@ protected:
 	Tratador m_tratador;
 	std::string m_batismo;
 public:
+	Animal();
+	~Animal();
 	int getId();
 	void setId(int);
 	std::string getClasse();

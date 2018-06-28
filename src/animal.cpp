@@ -1,7 +1,27 @@
+#include <iostream>
+#include <fstream>
+#include <string> 
+
 #include "../include/funcionario.h"
 #include "../include/veterinario.h"
 #include "../include/animal.h"
 
+Animal::Animal(){
+	std::string converter;
+	std::string::size_type sz; // alias do size_t de string
+
+	std::ifstream ip("./data/animal_db.csv");
+
+	if(ip.is_open()){
+		std::cout << "arquivo animal_db.csv aberto, feche-o para completar a operacao"<<std::endl;
+	}
+	getline(ip,converter,';');
+	std::cout<<converter<<std::endl;
+	m_id = std::stoi(converter,&sz);
+	std::cout<<m_id<<std::endl;
+
+}
+Animal::~Animal(){}
 int Animal::getId(){return m_id;}
 void Animal::setId(int id){m_id = id;}
 std::string Animal::getClasse(){return m_classe;}
