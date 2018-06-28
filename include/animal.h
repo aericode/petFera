@@ -43,6 +43,7 @@ public:
 	Tratador getTratador();
 	void setTratador(Tratador);
 
+	friend std::ostream& operator<<(std::ostream& os, const Animal& animal);
 };
 
 

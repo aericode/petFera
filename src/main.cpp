@@ -17,7 +17,7 @@
 
 int main(){
 
-	Animal ferinha;
+	Mamifero ferinha;
 	Exotico fera;
 	Veterinario vet1;
 	Tratador trat1;
@@ -59,8 +59,8 @@ int main(){
 	std::cout<<fera.getIbama()<<std::endl;
 	*/
 	//animal_db[ferinha.getId()] = ferinha;
-	
-	std::cout<<trat1<<std::endl;
+
+	std::cout<<ferinha<<std::endl;
 
 
     return 0;

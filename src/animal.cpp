@@ -2,7 +2,7 @@
 #include <fstream>
 #include <string> 
 
-#include "../include/funcionario.h"
+#include "../include/animal.h"
 #include "../include/veterinario.h"
 #include "../include/animal.h"
 
@@ -44,21 +44,24 @@ Animal::Animal(){
 	getline(ip,m_dieta,';');
 
 	//VETERINARIO
-	//getline(ip,temp,';');
+	getline(ip,temp,';');
 	//temp_int = std::stoi(temp,&sz);
-	//m_veterinario = funcionario_db[temp_int]; TODO: settar animal como friend do container com o map funcionario_db
+	//m_veterinario = animal_db[temp_int]; TODO: settar animal como friend do container com o map animal_db
 
 	//VETERINARIO
-	//getline(ip,temp,';');
+	getline(ip,temp,';');
 	//temp_int = std::stoi(temp,&sz);
-	//m_tratador = funcionario_db[temp_int]; TODO: settar animal como friend do container com o map funcionario_db
+	//m_tratador = animal_db[temp_int]; TODO: settar animal como friend do container com o map animal_db
 
 	//BATISMO
-	getline(ip,m_batismo,';');
+	getline(ip,m_batismo,'\n');
 
 }
 
 Animal::~Animal(){}
+
+
+//GETTERS/SETTERS
 int Animal::getId(){return m_id;}
 void Animal::setId(int id){m_id = id;}
 std::string Animal::getClasse(){return m_classe;}
@@ -79,3 +82,19 @@ Veterinario Animal::getVeterinario(){return m_veterinario;}
 void Animal::setVeterinario(Veterinario veterinario){m_veterinario = veterinario;}
 Tratador Animal::getTratador(){return m_tratador;}
 void Animal::setTratador(Tratador tratador){m_tratador = tratador;}
+
+
+std::ostream& operator<<(std::ostream& os, const Animal& animal){
+	os<<"ID: "<< animal.m_id << std::endl
+	  <<"Classe: "<< animal.m_classe << std::endl
+	  <<"Espécie: "<< animal.m_nome << std::endl
+	  <<"Nome cientifico: "<< animal.m_cientifico << std::endl
+	  <<"Sexo: "<< animal.m_sexo << std::endl
+	  <<"Tamanho: "<< animal.m_tamanho << std::endl
+	  <<"Dieta: "<< animal.m_dieta << std::endl
+	  //<<"Veterinario: "<< animal.m_veterinario.getNome() << std::endl
+	  //<<"Tratador: "<< animal.m_tratador.getNome() << std::endl
+	  <<"Nome de batismo: "<< animal.m_batismo << std::endl;
+
+	return os;
+}
