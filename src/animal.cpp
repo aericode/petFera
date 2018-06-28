@@ -15,7 +15,7 @@ Animal::Animal(){
 	std::ifstream ip("./data/animal_db.csv");
 	
 	if(!ip.is_open()){
-		std::cout << "arquivo animal_db.csv aberto, feche-o para completar a operacao"<<std::endl;
+		std::cout << "ERRO: arquivo animal_db.csv nao foi aberto"<<std::endl;
 	}
 	
 

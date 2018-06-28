@@ -1,5 +1,52 @@
+#include <iostream>
+#include <fstream>
+#include <string> 
+
 #include "../include/funcionario.h"
-#include <string>
+
+Funcionario::Funcionario(){
+
+	//int temp_int; REATIVAR APOS CRIAR UMA CLASSE CONTAINER PARA OS _DB
+	std::string temp;
+	std::string::size_type sz; // alias do size_t de string
+
+	std::ifstream ip("./data/funcionario_db.csv");
+	
+	if(!ip.is_open()){
+		std::cout << "ERRO: arquivo funcionario_db.csv nao foi aberto"<<std::endl;
+	}
+	
+
+	//ID
+	getline(ip,temp,';');
+	m_id = std::stoi(temp,&sz);//converte a string temp em int
+
+	//IGNORANDO SEGUNDO PARAMETRO
+	getline(ip,temp,';');
+
+	//NOME
+	getline(ip,m_nome,';');
+
+	//CPF
+	getline(ip,m_cpf,';');
+
+	//IDADE
+	getline(ip,temp,';');
+	//m_idade = std::stoi(temp,&sz);//converte a string temp em short int int
+
+	//TIPO SANGUINEO
+	getline(ip,m_tipo_sanguineo,';');
+
+	//FATOR RH
+	getline(ip,temp,';');
+	m_fatorRH = *temp.c_str();//converte a string temp em char
+
+	//ESPECIALIDADE
+	getline(ip,m_especialidade,'\n');
+
+}
+
+Funcionario::~Funcionario(){}
 
 int Funcionario::getId(){return m_id;}
 void Funcionario::setId(int id){m_id = id;}

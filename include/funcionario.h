@@ -13,6 +13,8 @@ protected:
 	char m_fatorRH;
 	std::string m_especialidade;
 public:
+	Funcionario();
+	~Funcionario();
 	int getId();
 	void setId(int);
 	std::string getNome();

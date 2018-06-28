@@ -27,8 +27,8 @@ int main(){
 
 
 
-	vet1.setNome("Adalberto");
-	trat1.setNome("Felisberto");
+	//vet1.setNome("Adalberto");
+	//trat1.setNome("Felisberto");
 	
 	//ferinha.setId(0206);
 	//ferinha.setBatismo("Gatimon");
@@ -60,7 +60,7 @@ int main(){
 	*/
 	//animal_db[ferinha.getId()] = ferinha;
 	
-	std::cout<<ferinha.getTamanho()<<std::endl;
+	std::cout<<trat1.getNome()<<std::endl;
 
 
     return 0;
