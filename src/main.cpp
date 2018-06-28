@@ -60,7 +60,7 @@ int main(){
 	*/
 	//animal_db[ferinha.getId()] = ferinha;
 	
-	std::cout<<trat1.getNome()<<std::endl;
+	std::cout<<trat1<<std::endl;
 
 
     return 0;

@@ -62,3 +62,14 @@ char Funcionario::getFatorRH(){return m_fatorRH;}
 void Funcionario::setFatorRH(char fatorRH){m_fatorRH = fatorRH;}
 std::string Funcionario::getEspecialidade(){return m_especialidade;}
 void Funcionario::setEspecialidade(std::string especialidade){m_especialidade = especialidade;}
+
+std::ostream& operator<<(std::ostream& os, const Funcionario& funcionario){
+	os<<"ID: "<< funcionario.m_id << std::endl
+	  <<"Nome: "<< funcionario.m_nome << std::endl
+	  <<"CPF: "<< funcionario.m_cpf << std::endl
+	  <<"Idade: "<< funcionario.m_idade << std::endl
+	  <<"Tipo sanguineo "<< funcionario.m_tipo_sanguineo<<funcionario.m_fatorRH << std::endl
+	  <<"Especialidade: "<< funcionario.m_especialidade << std::endl;
+
+	return os;
+}

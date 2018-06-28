@@ -1,5 +1,6 @@
 #ifndef FUNCIONARIO_H
 #define FUNCIONARIO_H
+#include <iostream>
 #include <string>
 
 class Funcionario
@@ -29,6 +30,8 @@ public:
 	void setFatorRH(char);
 	std::string getEspecialidade();
 	void setEspecialidade(std::string);
+
+	friend std::ostream& operator<<(std::ostream& os, const Funcionario& funcionario);
 };
 
 
