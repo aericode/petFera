@@ -4,8 +4,17 @@
 
 #include "../include/funcionario.h"
 
-Funcionario::Funcionario(){
-
+Funcionario::Funcionario(int id,std::string nome,std::string cpf,int idade
+						,std::string tipo_sanguineo,char fatorRH,std::string especialidade) 
+																				 :m_id(id)
+																				 ,m_nome(nome)
+																				 ,m_cpf(cpf)
+																				 ,m_idade(idade)
+																				 ,m_tipo_sanguineo(tipo_sanguineo)
+																				 ,m_fatorRH(fatorRH)
+																				 ,m_especialidade(especialidade){}
+/*{
+	
 	std::string temp;
 	std::string::size_type sz; // alias do size_t de string
 
@@ -42,9 +51,9 @@ Funcionario::Funcionario(){
 
 	//ESPECIALIDADE
 	getline(ip,m_especialidade,'\n');
-
+	
 }
-
+*/
 Funcionario::~Funcionario(){}
 
 int Funcionario::getId(){return m_id;}
