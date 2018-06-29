@@ -23,11 +23,14 @@
 class Loja
 {
 private:
-	map<int, std::shared_ptr <Animal> > animal_db;
-	map<int, std::shared_ptr <Funcionario> > funcionario_db;
+	std::map<int, std::shared_ptr <Animal> > animal_db;
+	std::map<int, std::shared_ptr <Funcionario> > funcionario_db;
 public:
+	Loja();
+	~Loja();
 	void carregarFuncionarios();
 	void carregarAnimais();
+	void func_imprimePorId(int);
 };
 
 

@@ -4,7 +4,9 @@
 
 #include "../include/funcionario.h"
 
-Funcionario::Funcionario(int id,std::string nome,std::string cpf,int idade
+Funcionario::Funcionario(){}
+
+Funcionario::Funcionario(int id,std::string nome,std::string cpf,short int idade
 						,std::string tipo_sanguineo,char fatorRH,std::string especialidade) 
 																				 :m_id(id)
 																				 ,m_nome(nome)

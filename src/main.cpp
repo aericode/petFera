@@ -14,16 +14,20 @@
 #include "../include/nativo.h"
 #include "../include/aveExotica.h"
 #include "../include/aveNativa.h"
+#include "../include/loja.h"
 
 int main(){
-
+	/*
 	Mamifero ferinha;
 	Exotico fera;
 	Veterinario vet1;
 	Tratador trat1;
 	std::map <int, Animal> animal_db;
 	std::map <int, Funcionario> funcionario_db; 
+	*/
+	Loja loja;
 
+	loja.func_imprimePorId(1);
 
 
 
@@ -60,7 +64,7 @@ int main(){
 	*/
 	//animal_db[ferinha.getId()] = ferinha;
 
-	std::cout<<ferinha<<std::endl;
+	//std::cout<<ferinha<<std::endl;
 
 
     return 0;

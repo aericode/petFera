@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <memory>
+#include <fstream>
 #include <map>
 
 #include "../include/funcionario.h"
@@ -18,9 +19,11 @@
 #include "../include/loja.h"
 
 
+
 void Loja::carregarFuncionarios(){
 	std::string tipo_funcionario;
 	std::string::size_type sz; // alias do size_t de string
+	std::string temp;
 
 	std::ifstream ip("./data/funcionario_db.csv");
 	
@@ -65,6 +68,31 @@ void Loja::carregarFuncionarios(){
 		getline(ip,func_especialidade,'\n');
 
 
+		//INICIALIZAR O FUNCIONARIO
+		if(tipo_funcionario=="Veterinario"){
+			funcionario_db[func_id] = std::make_shared<Funcionario>(
+														Funcionario	(func_id,func_nome,func_cpf,
+																	func_idade,func_tipo_sanguineo,
+																	func_fatorRH,func_especialidade));
+		}
+
+		if(tipo_funcionario=="Tratador"){
+			funcionario_db[func_id] = std::make_shared<Funcionario>(
+														Funcionario	(func_id,func_nome,func_cpf,
+																	func_idade,func_tipo_sanguineo,
+																	func_fatorRH,func_especialidade));
+		}
+
 
 	}
+}
+
+Loja::Loja(){
+	Loja::carregarFuncionarios();
+}
+
+Loja::~Loja(){}
+
+void Loja::func_imprimePorId(int func_id){
+	std::cout<<*funcionario_db[func_id]<<std::endl;
 }
