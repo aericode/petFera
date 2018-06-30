@@ -42,10 +42,10 @@ std::string Animal::getDieta(){return m_dieta;}
 void Animal::setDieta(std::string dieta){m_dieta = dieta;}
 std::string Animal::getBatismo(){return m_batismo;}
 void Animal::setBatismo(std::string batismo){m_batismo = batismo;}
-//std::shared_ptr<Veterinario> Animal::getVeterinario(){return m_veterinario;}
-void Animal::setVeterinario(std::shared_ptr<Veterinario> veterinario){m_veterinario = veterinario;}
-//std::shared_ptr<Tratador> Animal::getTratador(){return m_tratador;}
-void Animal::setTratador(std::shared_ptr<Tratador> tratador){m_tratador = tratador;}
+std::shared_ptr<Funcionario> Animal::getVeterinario(){return m_veterinario;}
+void Animal::setVeterinario(std::shared_ptr<Funcionario> veterinario){m_veterinario = veterinario;}
+std::shared_ptr<Funcionario> Animal::getTratador(){return m_tratador;}
+void Animal::setTratador(std::shared_ptr<Funcionario> tratador){m_tratador = tratador;}
 
 
 std::ostream& operator<<(std::ostream& os, const Animal& animal){

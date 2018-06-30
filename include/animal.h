@@ -49,10 +49,10 @@ public:
 	std::string getBatismo();
 	void setBatismo(std::string);
 	
-	std::shared_ptr<Veterinario> getVeterinario();
-	void setVeterinario(std::shared_ptr<Veterinario>);
-	std::shared_ptr<Tratador> getTratador();
-	void setTratador(std::shared_ptr<Tratador>);
+	std::shared_ptr<Funcionario> getVeterinario();
+	void setVeterinario(std::shared_ptr<Funcionario>);
+	std::shared_ptr<Funcionario> getTratador();
+	void setTratador(std::shared_ptr<Funcionario>);
 	
 	friend std::ostream& operator<<(std::ostream& os, const Animal& animal);
 };
