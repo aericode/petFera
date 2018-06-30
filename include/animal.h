@@ -3,6 +3,7 @@
 #include "tratador.h"
 #include "veterinario.h"
 #include <string>
+#include <memory>
 
 class Animal
 {
@@ -14,8 +15,8 @@ protected:
 	char m_sexo;
 	float m_tamanho;
 	std::string m_dieta;
-	Veterinario m_veterinario;
-	Tratador m_tratador;
+	shared_ptr<Veterinario> m_veterinario;
+	shared_ptr<Tratador> m_tratador;
 	std::string m_batismo;
 	
 public:
