@@ -15,7 +15,7 @@ protected:
 	char m_sexo;
 	float m_tamanho;
 	std::string m_dieta;
-	std::shared_ptr<Veterinario> m_veterinario;
+	std::shared_ptr<Funcionario> m_veterinario;
 	std::shared_ptr<Tratador> m_tratador;
 	std::string m_batismo;
 	
@@ -28,7 +28,7 @@ public:
 			,char
 			,float
 			,std::string
-			//,std::shared_ptr<Veterinario>&
+			,std::shared_ptr<Funcionario>
 			//,std::shared_ptr<Tratador>&
 			,std::string);
 	~Animal();
@@ -48,12 +48,12 @@ public:
 	void setDieta(std::string);
 	std::string getBatismo();
 	void setBatismo(std::string);
-
+	/*
 	std::shared_ptr<Veterinario> getVeterinario();
 	void setVeterinario(std::shared_ptr<Veterinario>);
 	std::shared_ptr<Tratador> getTratador();
 	void setTratador(std::shared_ptr<Tratador>);
-
+	*/
 	friend std::ostream& operator<<(std::ostream& os, const Animal& animal);
 };
 

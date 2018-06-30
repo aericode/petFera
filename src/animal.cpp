@@ -9,8 +9,8 @@
 
 Animal::Animal  (int anim_id, std::string anim_classe, std::string anim_nome
 				,std::string anim_cientifico,char anim_sexo,float anim_tamanho
-				,std::string anim_dieta/*, std::shared_ptr<Veterinario>& anim_veterinario
-				,std::shared_ptr<Tratador>& anim_tratador*/,std::string anim_batismo){ 
+				,std::string anim_dieta, std::shared_ptr<Funcionario> anim_veterinario
+				/*,std::shared_ptr<Tratador>& anim_tratador*/,std::string anim_batismo){ 
 																				m_id = anim_id;
 																				m_classe = anim_classe;
 																				m_nome = anim_nome;
@@ -18,7 +18,7 @@ Animal::Animal  (int anim_id, std::string anim_classe, std::string anim_nome
 																				m_sexo = anim_sexo;
 																				m_tamanho = anim_tamanho;
 																				m_dieta = anim_dieta;
-																				//m_veterinario = anim_veterinario;
+																				m_veterinario = anim_veterinario;
 																				//m_tratador = anim_tratador;
 																				m_batismo = anim_batismo;}
 
@@ -94,10 +94,10 @@ std::string Animal::getDieta(){return m_dieta;}
 void Animal::setDieta(std::string dieta){m_dieta = dieta;}
 std::string Animal::getBatismo(){return m_batismo;}
 void Animal::setBatismo(std::string batismo){m_batismo = batismo;}
-std::shared_ptr<Veterinario> Animal::getVeterinario(){return m_veterinario;}
-void Animal::setVeterinario(std::shared_ptr<Veterinario> veterinario){m_veterinario = veterinario;}
-std::shared_ptr<Tratador> Animal::getTratador(){return m_tratador;}
-void Animal::setTratador(std::shared_ptr<Tratador> tratador){m_tratador = tratador;}
+//std::shared_ptr<Veterinario> Animal::getVeterinario(){return m_veterinario;}
+//void Animal::setVeterinario(std::shared_ptr<Veterinario> veterinario){m_veterinario = veterinario;}
+//std::shared_ptr<Tratador> Animal::getTratador(){return m_tratador;}
+//void Animal::setTratador(std::shared_ptr<Tratador> tratador){m_tratador = tratador;}
 
 
 std::ostream& operator<<(std::ostream& os, const Animal& animal){

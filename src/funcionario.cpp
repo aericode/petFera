@@ -5,58 +5,6 @@
 #include "../include/funcionario.h"
 
 Funcionario::Funcionario(){}
-/*
-Funcionario::Funcionario(int id,std::string nome,std::string cpf,short int idade
-						,std::string tipo_sanguineo,char fatorRH,std::string especialidade){ 
-																							 m_id =id;
-																							 m_nome =nome;
-																							 m_cpf =cpf;
-																							 m_idade =idade;
-																							 m_tipo_sanguineo =tipo_sanguineo;
-																							 m_fatorRH =fatorRH;
-																							 m_especialidade =especialidade;}
-*/																			 
-/*{
-	
-	std::string temp;
-	std::string::size_type sz; // alias do size_t de string
-
-	std::ifstream ip("./data/funcionario_db.csv");
-	
-	if(!ip.is_open()){
-		std::cout << "ERRO: arquivo funcionario_db.csv nao foi aberto"<<std::endl;
-	}
-	
-
-	//ID
-	getline(ip,temp,';');
-	m_id = std::stoi(temp,&sz);//converte a string temp em int
-
-	//IGNORANDO SEGUNDO PARAMETRO
-	getline(ip,temp,';');
-
-	//NOME
-	getline(ip,m_nome,';');
-
-	//CPF
-	getline(ip,m_cpf,';');
-
-	//IDADE
-	getline(ip,temp,';');
-	m_idade = (short)std::stoi(temp,&sz);//converte a string temp em int
-
-	//TIPO SANGUINEO
-	getline(ip,m_tipo_sanguineo,';');
-
-	//FATOR RH
-	getline(ip,temp,';');
-	m_fatorRH = *temp.c_str();//converte a string temp em char
-
-	//ESPECIALIDADE
-	getline(ip,m_especialidade,'\n');
-	
-}
-*/
 Funcionario::~Funcionario(){}
 
 int Funcionario::getId(){return m_id;}
