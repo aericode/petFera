@@ -105,8 +105,8 @@ void Loja::carregarAnimais(){
 	char anim_sexo;
 	float anim_tamanho;
 	std::string anim_dieta;
-	std::shared_ptr <Veterinario> anim_veterinario;
-	std::shared_ptr <Tratador> anim_tratador;
+	//std::shared_ptr <Veterinario> anim_veterinario;
+	//std::shared_ptr <Tratador> anim_tratador;
 	std::string anim_batismo;
 	
 	while(ip.good()){
@@ -137,28 +137,30 @@ void Loja::carregarAnimais(){
 		//VETERINARIO
 		getline(ip,temp,';');//recebe o numero de registro do funcionario
 		temp_int = std::stoi(temp,&sz);//converte esse numero em int
-		auto aux = funcionario_db[temp_int];//usa o int como chave para associar e retornar um ponteiro para funcionario
-		*anim_veterinario = aux.get();
+		auto  anim_veterinario = *funcionario_db[temp_int];//usa o int como chave para associar e retornar um ponteiro para funcionario
+		std::cout<<anim_veterinario<<std::endl;
+
 
 		//TRATADOR
 		getline(ip,temp,';');//recebe o numero de registro do funcionario
 		temp_int = std::stoi(temp,&sz);//converte esse numero em int
-		//anim_tratador = funcionario_db[temp_int]->get();//usa o int como chave para associar e retornar um ponteiro para funcionario
+		auto anim_tratador = *funcionario_db[temp_int];//usa o int como chave para associar e retornar um ponteiro para funcionario
 
 		//BATISMO
 		getline(ip,anim_batismo,'\n');
-
+		/*
 		//INICIALIZA ANIMAL
 		animal_db[anim_id] = std::make_shared<Animal>(
 													  Animal(anim_id, anim_classe, anim_nome
 															,anim_cientifico,anim_sexo, anim_tamanho
 															,anim_dieta, anim_veterinario, anim_tratador,anim_batismo));
-																
+		*/														
 		}
 }
 
 Loja::Loja(){
 	Loja::carregarFuncionarios();
+	Loja::carregarAnimais();
 }
 
 Loja::~Loja(){}
