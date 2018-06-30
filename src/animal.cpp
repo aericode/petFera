@@ -10,7 +10,7 @@
 Animal::Animal  (int anim_id, std::string anim_classe, std::string anim_nome
 				,std::string anim_cientifico,char anim_sexo,float anim_tamanho
 				,std::string anim_dieta, std::shared_ptr<Funcionario> anim_veterinario
-				/*,std::shared_ptr<Tratador>& anim_tratador*/,std::string anim_batismo){ 
+				,std::shared_ptr<Funcionario> anim_tratador,std::string anim_batismo){ 
 																				m_id = anim_id;
 																				m_classe = anim_classe;
 																				m_nome = anim_nome;
@@ -19,60 +19,8 @@ Animal::Animal  (int anim_id, std::string anim_classe, std::string anim_nome
 																				m_tamanho = anim_tamanho;
 																				m_dieta = anim_dieta;
 																				m_veterinario = anim_veterinario;
-																				//m_tratador = anim_tratador;
+																				m_tratador = anim_tratador;
 																				m_batismo = anim_batismo;}
-
-
-	/*
-	//int temp_int =  REATIVAR APOS CRIAR UMA CLASSE CONTAINER PARA OS _DB
-	std::string temp;
-	std::string::size_type sz; // alias do size_t de string
-
-	std::ifstream ip("./data/animal_db.csv");
-	
-	if(!ip.is_open()){
-		std::cout << "ERRO: arquivo animal_db.csv nao foi aberto"<<std::endl;
-	}
-	
-
-	//ID
-	getline(ip,temp,';');
-	m_id = std::stoi(temp,&sz);//converte a string temp em int
-
-	//CLASSE
-	getline(ip,m_classe,';');
-
-	//NOME (da especie)
-	getline(ip,m_nome,';');
-
-	//NOME CIENTIFICO
-	getline(ip,m_cientifico,';');	
-
-	//SEXO
-	getline(ip,temp,';');
-	m_sexo = *temp.c_str();//converte a string temp em char
-
-	//TAMANHO
-	getline(ip,temp,';');
-	m_tamanho = ::atof(temp.c_str());//converte a string temp em float
-
-	//DIETA
-	getline(ip,m_dieta,';');
-
-	//VETERINARIO
-	getline(ip,temp,';');
-	//temp_int = std::stoi(temp,&sz);
-	//m_veterinario = animal_db[temp_int]; TODO: settar animal como friend do container com o map animal_db
-
-	//VETERINARIO
-	getline(ip,temp,';');
-	//temp_int = std::stoi(temp,&sz);
-	//m_tratador = animal_db[temp_int]; TODO: settar animal como friend do container com o map animal_db
-
-	//BATISMO
-	getline(ip,m_batismo,'\n');
-	*/
-//}
 
 Animal::~Animal(){}
 

@@ -16,7 +16,7 @@ protected:
 	float m_tamanho;
 	std::string m_dieta;
 	std::shared_ptr<Funcionario> m_veterinario;
-	std::shared_ptr<Tratador> m_tratador;
+	std::shared_ptr<Funcionario> m_tratador;
 	std::string m_batismo;
 	
 public:
@@ -29,7 +29,7 @@ public:
 			,float
 			,std::string
 			,std::shared_ptr<Funcionario>
-			//,std::shared_ptr<Tratador>&
+			,std::shared_ptr<Funcionario>
 			,std::string);
 	~Animal();
 	int getId();
