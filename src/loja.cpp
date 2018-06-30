@@ -156,6 +156,12 @@ void Loja::carregarAnimais(){
 		}
 }
 
+void Loja::lerFuncionarios(){
+	for(auto it = funcionario_db.cbegin(); it != funcionario_db.cend(); ++it){
+    	std::cout << it->first << " " << *(it->second) << std::endl;
+	}
+}
+
 Loja::Loja(){
 	Loja::carregarFuncionarios();
 	Loja::carregarAnimais();

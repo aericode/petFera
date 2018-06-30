@@ -30,6 +30,8 @@ public:
 	~Loja();
 	void carregarFuncionarios();
 	void carregarAnimais();
+	void salvarFuncionarios();
+	void lerFuncionarios();
 	void func_imprimePorId(int);
 	void anim_imprimePorId(int);
 };
