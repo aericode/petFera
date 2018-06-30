@@ -87,6 +87,76 @@ void Loja::carregarFuncionarios(){
 	}
 }
 
+void Loja::carregarAnimais(){
+	int temp_int;
+	std::string temp;
+	std::string::size_type sz; // alias do size_t de string
+
+	std::ifstream ip("./data/animal_db.csv");
+	
+	if(!ip.is_open()){
+		std::cout << "ERRO: arquivo animal_db.csv nao foi aberto"<<std::endl;
+	}
+
+	int anim_id;
+	std::string anim_classe;
+	std::string anim_nome; //especie do animal
+	std::string anim_cientifico;
+	char anim_sexo;
+	float anim_tamanho;
+	std::string anim_dieta;
+	std::shared_ptr <Veterinario> anim_veterinario;
+	std::shared_ptr <Tratador> anim_tratador;
+	std::string anim_batismo;
+	
+	while(ip.good()){
+		//ID
+		getline(ip,temp,';');
+		anim_id = std::stoi(temp,&sz);//converte a string temp em int
+
+		//CLASSE
+		getline(ip,anim_classe,';');
+
+		//NOME (da especie)
+		getline(ip,anim_nome,';');
+
+		//NOME CIENTIFICO
+		getline(ip,anim_cientifico,';');	
+
+		//SEXO
+		getline(ip,temp,';');
+		anim_sexo = *temp.c_str();//converte a string temp em char
+
+		//TAMANHO
+		getline(ip,temp,';');
+		anim_tamanho = ::atof(temp.c_str());//converte a string temp em float
+
+		//DIETA
+		getline(ip,anim_dieta,';');
+
+		//VETERINARIO
+		getline(ip,temp,';');//recebe o numero de registro do funcionario
+		temp_int = std::stoi(temp,&sz);//converte esse numero em int
+		auto aux = funcionario_db[temp_int];//usa o int como chave para associar e retornar um ponteiro para funcionario
+		*anim_veterinario = aux.get();
+
+		//TRATADOR
+		getline(ip,temp,';');//recebe o numero de registro do funcionario
+		temp_int = std::stoi(temp,&sz);//converte esse numero em int
+		//anim_tratador = funcionario_db[temp_int]->get();//usa o int como chave para associar e retornar um ponteiro para funcionario
+
+		//BATISMO
+		getline(ip,anim_batismo,'\n');
+
+		//INICIALIZA ANIMAL
+		animal_db[anim_id] = std::make_shared<Animal>(
+													  Animal(anim_id, anim_classe, anim_nome
+															,anim_cientifico,anim_sexo, anim_tamanho
+															,anim_dieta, anim_veterinario, anim_tratador,anim_batismo));
+																
+		}
+}
+
 Loja::Loja(){
 	Loja::carregarFuncionarios();
 }

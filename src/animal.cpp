@@ -1,14 +1,30 @@
 #include <iostream>
 #include <fstream>
 #include <string> 
+#include <memory>
 
-#include "../include/animal.h"
+#include "../include/tratador.h"
 #include "../include/veterinario.h"
 #include "../include/animal.h"
 
-Animal::Animal(){
+Animal::Animal  (int anim_id, std::string anim_classe, std::string anim_nome
+				,std::string anim_cientifico,char anim_sexo,float anim_tamanho
+				,std::string anim_dieta, std::shared_ptr<Veterinario>& anim_veterinario
+				,std::shared_ptr<Tratador>& anim_tratador, std::string anim_batismo){ 
+																				m_id = anim_id;
+																				m_classe = anim_classe;
+																				m_nome = anim_nome;
+																				m_cientifico = anim_cientifico;
+																				m_sexo = anim_sexo;
+																				m_tamanho = anim_tamanho;
+																				m_dieta = anim_dieta;
+																				m_veterinario = anim_veterinario;
+																				m_tratador = anim_tratador;
+																				m_batismo = anim_batismo;}
 
-	//int temp_int; REATIVAR APOS CRIAR UMA CLASSE CONTAINER PARA OS _DB
+
+	/*
+	//int temp_int =  REATIVAR APOS CRIAR UMA CLASSE CONTAINER PARA OS _DB
 	std::string temp;
 	std::string::size_type sz; // alias do size_t de string
 
@@ -55,8 +71,8 @@ Animal::Animal(){
 
 	//BATISMO
 	getline(ip,m_batismo,'\n');
-
-}
+	*/
+//}
 
 Animal::~Animal(){}
 
@@ -78,10 +94,10 @@ std::string Animal::getDieta(){return m_dieta;}
 void Animal::setDieta(std::string dieta){m_dieta = dieta;}
 std::string Animal::getBatismo(){return m_batismo;}
 void Animal::setBatismo(std::string batismo){m_batismo = batismo;}
-Veterinario Animal::getVeterinario(){return m_veterinario;}
-void Animal::setVeterinario(Veterinario veterinario){m_veterinario = veterinario;}
-Tratador Animal::getTratador(){return m_tratador;}
-void Animal::setTratador(Tratador tratador){m_tratador = tratador;}
+std::shared_ptr<Veterinario> Animal::getVeterinario(){return m_veterinario;}
+void Animal::setVeterinario(std::shared_ptr<Veterinario> veterinario){m_veterinario = veterinario;}
+std::shared_ptr<Tratador> Animal::getTratador(){return m_tratador;}
+void Animal::setTratador(std::shared_ptr<Tratador> tratador){m_tratador = tratador;}
 
 
 std::ostream& operator<<(std::ostream& os, const Animal& animal){

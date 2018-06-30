@@ -15,7 +15,7 @@ protected:
 	std::string m_especialidade;
 public:
 	Funcionario();
-	Funcionario(int,std::string,std::string,short int,std::string,char,std::string);
+	//Funcionario(int,std::string,std::string,short int,std::string,char,std::string);
 	~Funcionario();
 	int getId();
 	void setId(int);

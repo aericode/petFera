@@ -15,12 +15,22 @@ protected:
 	char m_sexo;
 	float m_tamanho;
 	std::string m_dieta;
-	shared_ptr<Veterinario> m_veterinario;
-	shared_ptr<Tratador> m_tratador;
+	std::shared_ptr<Veterinario> m_veterinario;
+	std::shared_ptr<Tratador> m_tratador;
 	std::string m_batismo;
 	
 public:
 	Animal();
+	Animal  (int
+			,std::string
+			,std::string
+			,std::string
+			,char
+			,float
+			,std::string
+			,std::shared_ptr<Veterinario>&
+			,std::shared_ptr<Tratador>&
+			,std::string);
 	~Animal();
 	int getId();
 	void setId(int);
@@ -39,10 +49,10 @@ public:
 	std::string getBatismo();
 	void setBatismo(std::string);
 
-	Veterinario getVeterinario();
-	void setVeterinario(Veterinario);
-	Tratador getTratador();
-	void setTratador(Tratador);
+	std::shared_ptr<Veterinario> getVeterinario();
+	void setVeterinario(std::shared_ptr<Veterinario>);
+	std::shared_ptr<Tratador> getTratador();
+	void setTratador(std::shared_ptr<Tratador>);
 
 	friend std::ostream& operator<<(std::ostream& os, const Animal& animal);
 };
