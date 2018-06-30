@@ -15,6 +15,7 @@ Funcionario::Funcionario(int id,std::string nome,std::string cpf,short int idade
 																				 ,m_tipo_sanguineo(tipo_sanguineo)
 																				 ,m_fatorRH(fatorRH)
 																				 ,m_especialidade(especialidade){}
+																				 
 /*{
 	
 	std::string temp;

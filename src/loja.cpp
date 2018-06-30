@@ -70,15 +70,15 @@ void Loja::carregarFuncionarios(){
 
 		//INICIALIZAR O FUNCIONARIO
 		if(tipo_funcionario=="Veterinario"){
-			funcionario_db[func_id] = std::make_shared<Funcionario>(
-														Funcionario	(func_id,func_nome,func_cpf,
+			funcionario_db[func_id] = std::make_shared<Veterinario>(
+														Veterinario	(func_id,func_nome,func_cpf,
 																	func_idade,func_tipo_sanguineo,
 																	func_fatorRH,func_especialidade));
 		}
 
 		if(tipo_funcionario=="Tratador"){
-			funcionario_db[func_id] = std::make_shared<Funcionario>(
-														Funcionario	(func_id,func_nome,func_cpf,
+			funcionario_db[func_id] = std::make_shared<Tratador>(
+														Tratador	(func_id,func_nome,func_cpf,
 																	func_idade,func_tipo_sanguineo,
 																	func_fatorRH,func_especialidade));
 		}
