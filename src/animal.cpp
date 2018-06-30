@@ -43,9 +43,9 @@ void Animal::setDieta(std::string dieta){m_dieta = dieta;}
 std::string Animal::getBatismo(){return m_batismo;}
 void Animal::setBatismo(std::string batismo){m_batismo = batismo;}
 //std::shared_ptr<Veterinario> Animal::getVeterinario(){return m_veterinario;}
-//void Animal::setVeterinario(std::shared_ptr<Veterinario> veterinario){m_veterinario = veterinario;}
+void Animal::setVeterinario(std::shared_ptr<Veterinario> veterinario){m_veterinario = veterinario;}
 //std::shared_ptr<Tratador> Animal::getTratador(){return m_tratador;}
-//void Animal::setTratador(std::shared_ptr<Tratador> tratador){m_tratador = tratador;}
+void Animal::setTratador(std::shared_ptr<Tratador> tratador){m_tratador = tratador;}
 
 
 std::ostream& operator<<(std::ostream& os, const Animal& animal){
@@ -56,8 +56,8 @@ std::ostream& operator<<(std::ostream& os, const Animal& animal){
 	  <<"Sexo: "<< animal.m_sexo << std::endl
 	  <<"Tamanho: "<< animal.m_tamanho << std::endl
 	  <<"Dieta: "<< animal.m_dieta << std::endl
-	  //<<"Veterinario: "<< animal.m_veterinario.getNome() << std::endl
-	  //<<"Tratador: "<< animal.m_tratador.getNome() << std::endl
+	  <<"Veterinario: "<< animal.m_veterinario->getNome() << std::endl
+	  <<"Tratador: "<< animal.m_tratador->getNome() << std::endl
 	  <<"Nome de batismo: "<< animal.m_batismo << std::endl;
 
 	return os;

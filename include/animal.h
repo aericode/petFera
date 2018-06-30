@@ -48,12 +48,12 @@ public:
 	void setDieta(std::string);
 	std::string getBatismo();
 	void setBatismo(std::string);
-	/*
+	
 	std::shared_ptr<Veterinario> getVeterinario();
 	void setVeterinario(std::shared_ptr<Veterinario>);
 	std::shared_ptr<Tratador> getTratador();
 	void setTratador(std::shared_ptr<Tratador>);
-	*/
+	
 	friend std::ostream& operator<<(std::ostream& os, const Animal& animal);
 };
 
