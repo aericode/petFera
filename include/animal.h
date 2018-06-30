@@ -28,8 +28,8 @@ public:
 			,char
 			,float
 			,std::string
-			,std::shared_ptr<Veterinario>&
-			,std::shared_ptr<Tratador>&
+			//,std::shared_ptr<Veterinario>&
+			//,std::shared_ptr<Tratador>&
 			,std::string);
 	~Animal();
 	int getId();

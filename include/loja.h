@@ -31,6 +31,7 @@ public:
 	void carregarFuncionarios();
 	void carregarAnimais();
 	void func_imprimePorId(int);
+	void anim_imprimePorId(int);
 };
 
 

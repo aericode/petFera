@@ -136,25 +136,23 @@ void Loja::carregarAnimais(){
 
 		//VETERINARIO
 		getline(ip,temp,';');//recebe o numero de registro do funcionario
-		temp_int = std::stoi(temp,&sz);//converte esse numero em int
-		auto  anim_veterinario = *funcionario_db[temp_int];//usa o int como chave para associar e retornar um ponteiro para funcionario
-		std::cout<<anim_veterinario<<std::endl;
-
+		//temp_int = std::stoi(temp,&sz);//converte esse numero em int
+		//auto  anim_veterinario = *funcionario_db[temp_int];//usa o int como chave para associar e retornar um ponteiro para funcionario
 
 		//TRATADOR
 		getline(ip,temp,';');//recebe o numero de registro do funcionario
-		temp_int = std::stoi(temp,&sz);//converte esse numero em int
-		auto anim_tratador = *funcionario_db[temp_int];//usa o int como chave para associar e retornar um ponteiro para funcionario
+		//temp_int = std::stoi(temp,&sz);//converte esse numero em int
+		//auto anim_tratador = *funcionario_db[temp_int];//usa o int como chave para associar e retornar um ponteiro para funcionario
 
 		//BATISMO
 		getline(ip,anim_batismo,'\n');
-		/*
+		
 		//INICIALIZA ANIMAL
 		animal_db[anim_id] = std::make_shared<Animal>(
 													  Animal(anim_id, anim_classe, anim_nome
 															,anim_cientifico,anim_sexo, anim_tamanho
-															,anim_dieta, anim_veterinario, anim_tratador,anim_batismo));
-		*/														
+															,anim_dieta,/* anim_veterinario, anim_tratador,*/anim_batismo));
+																
 		}
 }
 
@@ -167,4 +165,8 @@ Loja::~Loja(){}
 
 void Loja::func_imprimePorId(int func_id){
 	std::cout<<*funcionario_db[func_id]<<std::endl;
+}
+
+void Loja::anim_imprimePorId(int anim_id){
+	std::cout<<*animal_db[anim_id]<<std::endl;
 }

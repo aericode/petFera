@@ -27,6 +27,8 @@ int main(){
 	*/
 	Loja loja;
 
+	loja.anim_imprimePorId(1);
+
 	//loja.func_imprimePorId(9090);
 
 
