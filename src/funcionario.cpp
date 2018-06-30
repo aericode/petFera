@@ -22,6 +22,26 @@ void Funcionario::setFatorRH(char fatorRH){m_fatorRH = fatorRH;}
 std::string Funcionario::getEspecialidade(){return m_especialidade;}
 void Funcionario::setEspecialidade(std::string especialidade){m_especialidade = especialidade;}
 
+std::string Funcionario::emiteSave(){ //transformar em função com template
+	std::string dataSave;
+	std::string separador = ";";
+	std::string atribuicao = "Funcionario";
+
+
+	dataSave = std::to_string(m_id)    + separador
+			 + atribuicao              + separador
+			 + m_nome                  + separador
+			 + m_cpf                   + separador
+			 + std::to_string(m_idade) + separador
+	         + m_tipo_sanguineo        + separador
+			 + m_fatorRH               + separador
+			 + m_especialidade         + "\n";
+
+
+	std::cout<< dataSave << std::endl;
+	return dataSave;
+}
+
 std::ostream& operator<<(std::ostream& os, const Funcionario& funcionario){
 	os<<"ID: "<< funcionario.m_id << std::endl
 	  <<"Nome: "<< funcionario.m_nome << std::endl

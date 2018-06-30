@@ -14,6 +14,7 @@ protected:
 	char m_fatorRH;
 	std::string m_especialidade;
 public:
+	std::string emiteSave();
 	Funcionario();
 	~Funcionario();
 	int getId();

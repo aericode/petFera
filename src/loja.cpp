@@ -165,12 +165,15 @@ void Loja::lerFuncionarios(){
 Loja::Loja(){
 	Loja::carregarFuncionarios();
 	Loja::carregarAnimais();
+
+
 }
 
 Loja::~Loja(){}
 
 void Loja::func_imprimePorId(int func_id){
 	std::cout<<*funcionario_db[func_id]<<std::endl;
+	//std::cout<<funcionario_db[func_id]->emiteSave()<<std::endl;
 }
 
 void Loja::anim_imprimePorId(int anim_id){

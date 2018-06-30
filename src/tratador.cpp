@@ -15,23 +15,3 @@ Tratador::Tratador  (int id,std::string nome,std::string cpf,short int idade
 																						 m_especialidade = especialidade;}
 Tratador::~Tratador(){}
 
-std::string Tratador::emiteSave(){ //transformar em função com template
-	std::string dataSave;
-	std::string separador = ";";
-	std::string atribuicao = "Tratador";
-
-
-	dataSave = std::to_string(m_id)    + separador
-			 + atribuicao              + separador
-			 + m_nome                  + separador
-			 + m_cpf                   + separador
-			 + std::to_string(m_idade) + separador
-	         + m_tipo_sanguineo        + separador
-			 + m_fatorRH               + separador
-			 + m_especialidade         + separador
-			 + "\n";
-
-
-	std::cout<< dataSave << std::endl;
-	return dataSave;
-}
