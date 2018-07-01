@@ -3,6 +3,7 @@
 #include <memory>
 #include <fstream>
 #include <map>
+#include <iterator>
 
 #include "../include/funcionario.h"
 #include "../include/veterinario.h"
@@ -164,9 +165,11 @@ void Loja::exibirFuncionarios(){
 
 void Loja::salvarFuncionarios(){
 	std::ofstream op;//abreviação para output
-	op.open("./data/funcionarioSave.csv");
-	for(auto it = funcionario_db.cbegin(); it != funcionario_db.cend(); ++it){
-    	op << it->second->emiteSave();
+	op.open("./data/funcionario_db.csv");
+	for(auto it = funcionario_db.cbegin(); it != funcionario_db.cend();){
+		std::string saveLine = it->second->emiteSave();
+		if(++it != funcionario_db.cend()) saveLine = saveLine + '\n';
+    	op << saveLine;
 	}
 	op.close();
 }

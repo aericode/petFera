@@ -34,7 +34,7 @@ std::string Funcionario::emiteSave(){ //transformar em função com template
 			 + std::to_string(m_idade) + separador
 	         + m_tipo_sanguineo        + separador
 			 + m_fatorRH               + separador
-			 + m_especialidade         + "\n";
+			 + m_especialidade;
 
 	return dataSave;
 }
