@@ -7,7 +7,7 @@ class Tratador : public Funcionario
 {
 public:
 	Tratador();
-	Tratador(int,std::string,std::string,short int,std::string,char,std::string);
+	Tratador(int,std::string,std::string,std::string,short int,std::string,char,std::string);
 	~Tratador();
 };
 

@@ -21,7 +21,6 @@
 
 
 void Loja::carregarFuncionarios(){
-	std::string tipo_funcionario;
 	std::string::size_type sz; // alias do size_t de string
 	std::string temp;
 
@@ -32,6 +31,7 @@ void Loja::carregarFuncionarios(){
 	}
 
 	int func_id;
+	std::string tipo_funcionario;
 	std::string func_nome;
 	std::string func_cpf;
 	short int func_idade;
@@ -71,14 +71,14 @@ void Loja::carregarFuncionarios(){
 		//INICIALIZAR O FUNCIONARIO
 		if(tipo_funcionario=="Veterinario"){
 			funcionario_db[func_id] = std::make_shared<Veterinario>(
-														Veterinario	(func_id,func_nome,func_cpf,tipo_funcionario
+														Veterinario	(func_id,tipo_funcionario,func_nome,func_cpf,
 																	func_idade,func_tipo_sanguineo,
 																	func_fatorRH,func_especialidade));
 		}
 
 		if(tipo_funcionario=="Tratador"){
 			funcionario_db[func_id] = std::make_shared<Tratador>(
-														Tratador	(func_id,func_nome,func_cpf,tipo_funcionario
+														Tratador	(func_id,tipo_funcionario,func_nome,func_cpf,
 																	func_idade,func_tipo_sanguineo,
 																	func_fatorRH,func_especialidade));
 		}
@@ -156,17 +156,15 @@ void Loja::carregarAnimais(){
 		}
 }
 
-void Loja::lerFuncionarios(){
+void Loja::exibirFuncionarios(){
 	for(auto it = funcionario_db.cbegin(); it != funcionario_db.cend(); ++it){
-    	std::cout << it->first << " " << *(it->second) << std::endl;
+    	std::cout << *(it->second) << std::endl;
 	}
 }
 
 Loja::Loja(){
 	Loja::carregarFuncionarios();
 	Loja::carregarAnimais();
-
-
 }
 
 Loja::~Loja(){}

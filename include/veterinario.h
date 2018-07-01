@@ -6,7 +6,7 @@ class Veterinario : public Funcionario
 {
 public:
 	Veterinario();
-	Veterinario(int,std::string,std::string,short int,std::string,char,std::string);
+	Veterinario(int,std::string,std::string,std::string,short int,std::string,char,std::string);
 	~Veterinario();
 };
 

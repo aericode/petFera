@@ -7,6 +7,7 @@ class Funcionario
 {
 protected:
 	int m_id;
+	std::string m_tipo_funcionario;//usado somente para writes e saves
 	std::string m_nome;
 	std::string m_cpf;
 	short int m_idade;

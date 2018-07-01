@@ -25,11 +25,10 @@ void Funcionario::setEspecialidade(std::string especialidade){m_especialidade = 
 std::string Funcionario::emiteSave(){ //transformar em função com template
 	std::string dataSave;
 	std::string separador = ";";
-	std::string atribuicao = "Funcionario";
 
 
 	dataSave = std::to_string(m_id)    + separador
-			 + atribuicao              + separador
+			 + m_tipo_funcionario      + separador
 			 + m_nome                  + separador
 			 + m_cpf                   + separador
 			 + std::to_string(m_idade) + separador
@@ -37,8 +36,6 @@ std::string Funcionario::emiteSave(){ //transformar em função com template
 			 + m_fatorRH               + separador
 			 + m_especialidade         + "\n";
 
-
-	std::cout<< dataSave << std::endl;
 	return dataSave;
 }
 
