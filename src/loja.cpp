@@ -162,6 +162,16 @@ void Loja::exibirFuncionarios(){
 	}
 }
 
+void Loja::salvarFuncionarios(){
+	std::ofstream op;//abreviação para output
+	op.open("./data/funcionarioSave.csv");
+	for(auto it = funcionario_db.cbegin(); it != funcionario_db.cend(); ++it){
+    	op << it->second->emiteSave();
+	}
+	op.close();
+}
+
+
 Loja::Loja(){
 	Loja::carregarFuncionarios();
 	Loja::carregarAnimais();
