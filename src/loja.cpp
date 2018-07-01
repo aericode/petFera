@@ -175,6 +175,7 @@ void Loja::salvarFuncionarios(){
 Loja::Loja(){
 	Loja::carregarFuncionarios();
 	Loja::carregarAnimais();
+	Loja::salvarFuncionarios();
 }
 
 Loja::~Loja(){}
