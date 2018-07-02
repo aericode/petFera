@@ -166,9 +166,20 @@ void Loja::exibirFuncionarios(){
 void Loja::salvarFuncionarios(){
 	std::ofstream op;//abreviação para output
 	op.open("./data/funcionario_db.csv");
-	for(auto it = funcionario_db.cbegin(); it != funcionario_db.cend();){
-		std::string saveLine = it->second->emiteSave();
-		if(++it != funcionario_db.cend()) saveLine = saveLine + '\n';
+	for(auto it = funcionario_db.cbegin(); it != funcionario_db.cend();){//o sistema vai para a prox entrada do map, (next não funcionou para peek do próximo, ++it incrementa, e depois é comparado)
+		std::string saveLine = it->second->emiteSave();//acessa o ponteiro do animal, associado à chave e chama uma string de save
+		if(++it != funcionario_db.cend()) saveLine = saveLine + '\n';//não pode dar quebra de linha na última linha (um funcionario por linha)
+    	op << saveLine;
+	}
+	op.close();
+}
+
+void Loja::salvarAnimais(){
+	std::ofstream op;//abreviação para output
+	op.open("./data/animal_db.csv");
+	for(auto it = animal_db.cbegin(); it != animal_db.cend();){//o sistema vai para a prox entrada do map, (next não funcionou para peek do próximo, ++it incrementa, e depois é comparado)
+		std::string saveLine = it->second->emiteSave();//acessa o ponteiro do animal, associado à chave e chama uma string de save
+		if(++it != animal_db.cend()) saveLine = saveLine + '\n';//adiciona um espaço ao final de todas as linhas menos a última.
     	op << saveLine;
 	}
 	op.close();
@@ -178,14 +189,15 @@ void Loja::salvarFuncionarios(){
 Loja::Loja(){
 	Loja::carregarFuncionarios();
 	Loja::carregarAnimais();
-	Loja::salvarFuncionarios();
 }
 
-Loja::~Loja(){}
+Loja::~Loja(){
+	Loja::salvarFuncionarios();
+	Loja::salvarAnimais();
+}
 
 void Loja::func_imprimePorId(int func_id){
 	std::cout<<*funcionario_db[func_id]<<std::endl;
-	//std::cout<<funcionario_db[func_id]->emiteSave()<<std::endl;
 }
 
 void Loja::anim_imprimePorId(int anim_id){

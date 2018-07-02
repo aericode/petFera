@@ -32,7 +32,7 @@ std::string Funcionario::emiteSave(){ //transformar em função com template
 			 + m_nome                  + separador
 			 + m_cpf                   + separador
 			 + std::to_string(m_idade) + separador
-	         + m_tipo_sanguineo        + separador
+			 + m_tipo_sanguineo        + separador
 			 + m_fatorRH               + separador
 			 + m_especialidade;
 

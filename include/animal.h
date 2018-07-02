@@ -20,6 +20,7 @@ protected:
 	std::string m_batismo;
 	
 public:
+	std::string emiteSave();
 	Animal();
 	Animal  (int
 			,std::string

@@ -47,6 +47,25 @@ void Animal::setVeterinario(std::shared_ptr<Funcionario> veterinario){m_veterina
 std::shared_ptr<Funcionario> Animal::getTratador(){return m_tratador;}
 void Animal::setTratador(std::shared_ptr<Funcionario> tratador){m_tratador = tratador;}
 
+std::string Animal::emiteSave(){
+	std::string dataSave; //string a ser retornada, informações são adicionadas por meio de concatenação (sobrecarga do + na string)
+	std::string separador = ";";//escolhe separador (leitura funciona somente com ; de acordo com o solicitado)
+
+
+	dataSave = std::to_string(m_id)                   + separador
+			 + m_classe                               + separador
+			 + m_nome                                 + separador
+			 + m_cientifico                           + separador
+			 + m_sexo                                 + separador
+			 + std::to_string(m_tamanho)              + separador
+			 + m_dieta                                + separador
+			 + std::to_string(m_veterinario->getId()) + separador
+			 + std::to_string(m_tratador->getId())    + separador
+			 + m_batismo;
+
+	return dataSave;
+}
+
 
 std::ostream& operator<<(std::ostream& os, const Animal& animal){
 	os<<"ID: "<< animal.m_id << std::endl
