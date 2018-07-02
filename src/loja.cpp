@@ -196,6 +196,67 @@ Loja::~Loja(){
 	Loja::salvarAnimais();
 }
 
+Loja::adicionaFuncionario(){
+	int func_id;
+	std::string tipo_funcionario;
+	std::string func_nome;
+	std::string func_cpf;
+	short int func_idade;
+	std::string func_tipo_sanguineo;
+	char func_fatorRH;
+	std::string func_especialidade;
+
+
+	//ID do funcionario
+	std::cout<<"Digite o ID do novo funcionário"<<std::endl;
+	std::getline(func_id,sizeof(func_id));
+
+	//Tipo do funcionario
+	std::cout<<"Digite o ID do novo funcionário"<<std::endl;
+	std::getline(tipo_funcionario,sizeof(tipo_funcionario));
+
+	//Nome do funcionario
+	std::cout<<"Digite o ID do novo funcionário"<<std::endl;
+	std::getline(func_nome,sizeof(func_nome));
+
+	//CPF do funcionario
+	std::cout<<"Digite o CPF do novo funcionário"<<std::endl;
+	std::getline(func_cpf,sizeof(func_cpf));
+
+	//Idade do funcionario
+	std::cout<<"Digite a idade do novo funcionário"<<std::endl;
+	std::cin>>func_idade;
+
+	//Tipo sanguíneo do funcionario
+	std::cout<<"Digite o Tipo sanguíneo do novo funcionário"<<std::endl;
+	std::getline(func_tipo_sanguineo,sizeof(func_tipo_sanguineo));
+
+	//Fator RH do funcionario
+	std::cout<<"Digite o fator RH do novo funcionário"<<std::endl;
+	std::cin>>func_fatorRH;
+
+	//Especialidade do funcionario
+	std::cout<<"Digite a especialidade do novo funcionário"<<std::endl;
+	std::getline(func_especialidade,sizeof(func_especialidade));
+
+	//INICIALIZAR O FUNCIONARIO
+	if(tipo_funcionario=="Veterinario"){
+		funcionario_db[func_id] = std::make_shared<Veterinario>(
+													Veterinario	(func_id,tipo_funcionario,func_nome,func_cpf,
+																func_idade,func_tipo_sanguineo,
+																func_fatorRH,func_especialidade));
+	}
+
+	if(tipo_funcionario=="Tratador"){
+		funcionario_db[func_id] = std::make_shared<Tratador>(
+													Tratador	(func_id,tipo_funcionario,func_nome,func_cpf,
+																func_idade,func_tipo_sanguineo,
+																func_fatorRH,func_especialidade));
+	}
+
+}
+
+
 void Loja::func_imprimePorId(int func_id){
 	std::cout<<*funcionario_db[func_id]<<std::endl;
 }
