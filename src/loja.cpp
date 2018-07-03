@@ -207,55 +207,58 @@ void Loja::adicionarFuncionario(){
 	char func_fatorRH;
 	std::string func_especialidade;
 
+	try(){
+		//ID do funcionario
+		std::cout<<"Digite o ID do novo funcionário"<<std::endl;
+		std::cin>>func_id;
 
-	//ID do funcionario
-	std::cout<<"Digite o ID do novo funcionário"<<std::endl;
-	std::cin>>func_id;
+		std::cin.ignore();//ignorar o a quebra de linha do cin
+		//Tipo do funcionario
+		std::cout<<"Digite a Função do novo funcionário"<<std::endl;
+		std::getline(std::cin,tipo_funcionario);
 
-	std::cin.ignore();//ignorar o a quebra de linha do cin
-	//Tipo do funcionario
-	std::cout<<"Digite a Função do novo funcionário"<<std::endl;
-	std::getline(std::cin,tipo_funcionario);
+		//Nome do funcionario
+		std::cout<<"Digite o Nome do novo funcionário"<<std::endl;
+		std::getline(std::cin,func_nome);
 
-	//Nome do funcionario
-	std::cout<<"Digite o Nome do novo funcionário"<<std::endl;
-	std::getline(std::cin,func_nome);
+		//CPF do funcionario
+		std::cout<<"Digite o CPF do novo funcionário"<<std::endl;
+		std::getline(std::cin,func_cpf);
 
-	//CPF do funcionario
-	std::cout<<"Digite o CPF do novo funcionário"<<std::endl;
-	std::getline(std::cin,func_cpf);
+		//Idade do funcionario
+		std::cout<<"Digite a Idade do novo funcionário"<<std::endl;
+		std::cin>>func_idade;
 
-	//Idade do funcionario
-	std::cout<<"Digite a Idade do novo funcionário"<<std::endl;
-	std::cin>>func_idade;
+		std::cin.ignore();//ignorar o a quebra de linha do cin
+		//Tipo sanguíneo do funcionario
+		std::cout<<"Digite o Tipo sanguíneo do novo funcionário"<<std::endl;
+		std::getline(std::cin,func_tipo_sanguineo);
 
-	std::cin.ignore();//ignorar o a quebra de linha do cin
-	//Tipo sanguíneo do funcionario
-	std::cout<<"Digite o Tipo sanguíneo do novo funcionário"<<std::endl;
-	std::getline(std::cin,func_tipo_sanguineo);
+		//Fator RH do funcionario
+		std::cout<<"Digite o fator RH do novo funcionário"<<std::endl;
+		std::cin>>func_fatorRH;
 
-	//Fator RH do funcionario
-	std::cout<<"Digite o fator RH do novo funcionário"<<std::endl;
-	std::cin>>func_fatorRH;
+		std::cin.ignore();//ignorar o a quebra de linha do cin
+		//Especialidade do funcionario
+		std::cout<<"Digite a especialidade do novo funcionário"<<std::endl;
+		std::getline(std::cin,func_especialidade);
 
-	std::cin.ignore();//ignorar o a quebra de linha do cin
-	//Especialidade do funcionario
-	std::cout<<"Digite a especialidade do novo funcionário"<<std::endl;
-	std::getline(std::cin,func_especialidade);
+		//INICIALIZAR O FUNCIONARIO
+		if(tipo_funcionario=="Veterinario"){
+			funcionario_db[func_id] = std::make_shared<Veterinario>(
+														Veterinario	(func_id,tipo_funcionario,func_nome,func_cpf,
+																	func_idade,func_tipo_sanguineo,
+																	func_fatorRH,func_especialidade));
+		}
 
-	//INICIALIZAR O FUNCIONARIO
-	if(tipo_funcionario=="Veterinario"){
-		funcionario_db[func_id] = std::make_shared<Veterinario>(
-													Veterinario	(func_id,tipo_funcionario,func_nome,func_cpf,
-																func_idade,func_tipo_sanguineo,
-																func_fatorRH,func_especialidade));
-	}
+		if(tipo_funcionario=="Tratador"){
+			funcionario_db[func_id] = std::make_shared<Tratador>(
+														Tratador	(func_id,tipo_funcionario,func_nome,func_cpf,
+																	func_idade,func_tipo_sanguineo,
+																	func_fatorRH,func_especialidade));
+		}
+	}catch(...){
 
-	if(tipo_funcionario=="Tratador"){
-		funcionario_db[func_id] = std::make_shared<Tratador>(
-													Tratador	(func_id,tipo_funcionario,func_nome,func_cpf,
-																func_idade,func_tipo_sanguineo,
-																func_fatorRH,func_especialidade));
 	}
 
 }
