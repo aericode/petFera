@@ -196,7 +196,7 @@ Loja::~Loja(){
 	Loja::salvarAnimais();
 }
 
-Loja::adicionaFuncionario(){
+void Loja::adicionaFuncionario(){
 	int func_id;
 	std::string tipo_funcionario;
 	std::string func_nome;
@@ -209,35 +209,38 @@ Loja::adicionaFuncionario(){
 
 	//ID do funcionario
 	std::cout<<"Digite o ID do novo funcionário"<<std::endl;
-	std::getline(func_id,sizeof(func_id));
+	std::cin>>func_id;
 
+	std::cin.ignore();//ignorar o a quebra de linha do cin
 	//Tipo do funcionario
-	std::cout<<"Digite o ID do novo funcionário"<<std::endl;
-	std::getline(tipo_funcionario,sizeof(tipo_funcionario));
+	std::cout<<"Digite a Função do novo funcionário"<<std::endl;
+	std::getline(std::cin,tipo_funcionario);
 
 	//Nome do funcionario
-	std::cout<<"Digite o ID do novo funcionário"<<std::endl;
-	std::getline(func_nome,sizeof(func_nome));
+	std::cout<<"Digite o Nome do novo funcionário"<<std::endl;
+	std::getline(std::cin,func_nome);
 
 	//CPF do funcionario
 	std::cout<<"Digite o CPF do novo funcionário"<<std::endl;
-	std::getline(func_cpf,sizeof(func_cpf));
+	std::getline(std::cin,func_cpf);
 
 	//Idade do funcionario
-	std::cout<<"Digite a idade do novo funcionário"<<std::endl;
+	std::cout<<"Digite a Idade do novo funcionário"<<std::endl;
 	std::cin>>func_idade;
 
+	std::cin.ignore();//ignorar o a quebra de linha do cin
 	//Tipo sanguíneo do funcionario
 	std::cout<<"Digite o Tipo sanguíneo do novo funcionário"<<std::endl;
-	std::getline(func_tipo_sanguineo,sizeof(func_tipo_sanguineo));
+	std::getline(std::cin,func_tipo_sanguineo);
 
 	//Fator RH do funcionario
 	std::cout<<"Digite o fator RH do novo funcionário"<<std::endl;
 	std::cin>>func_fatorRH;
 
+	std::cin.ignore();//ignorar o a quebra de linha do cin
 	//Especialidade do funcionario
 	std::cout<<"Digite a especialidade do novo funcionário"<<std::endl;
-	std::getline(func_especialidade,sizeof(func_especialidade));
+	std::getline(std::cin,func_especialidade);
 
 	//INICIALIZAR O FUNCIONARIO
 	if(tipo_funcionario=="Veterinario"){

@@ -29,7 +29,7 @@ int main(){
 
 	//loja.func_imprimePorId(1);
 	//loja.anim_imprimePorId(2);
-
+	loja.adicionaFuncionario();
 	loja.exibirFuncionarios();
 
 	//loja.func_imprimePorId(9090);
