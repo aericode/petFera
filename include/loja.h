@@ -35,8 +35,8 @@ public:
 	void salvarAnimais();
 	void func_imprimePorId(int);
 	void anim_imprimePorId(int);
-	void adicionaFuncionario();
-	void adicionaAnimal();
+	void adicionarFuncionario();
+	void adicionarAnimal();
 };
 
 

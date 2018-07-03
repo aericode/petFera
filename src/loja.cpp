@@ -197,7 +197,7 @@ Loja::~Loja(){
 }
 
 
-void Loja::adicionaFuncionario(){
+void Loja::adicionarFuncionario(){
 	int func_id;
 	std::string tipo_funcionario;
 	std::string func_nome;
@@ -261,7 +261,7 @@ void Loja::adicionaFuncionario(){
 }
 
 
-void Loja::adicionaAnimal(){
+void Loja::adicionarAnimal(){
 	int auxId;//o usuario digita e o programa busca no map o ponteiro correspondente
 
 	int anim_id;

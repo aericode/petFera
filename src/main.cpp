@@ -29,7 +29,7 @@ int main(){
 	int id;
 	//loja.func_imprimePorId(1);
 	//loja.anim_imprimePorId(2);
-	loja.adicionaAnimal();
+	loja.adicionarAnimal();
 
 
 	std::cout<<"qual o id do animal que voce quer ver?"<<std::endl;
