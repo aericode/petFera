@@ -15,4 +15,3 @@ Tratador::Tratador  (int id,std::string tipo_funcionario,std::string nome,std::s
 																										 m_fatorRH = fatorRH;
 																										 m_especialidade = especialidade;}
 Tratador::~Tratador(){}
-

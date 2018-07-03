@@ -196,6 +196,7 @@ Loja::~Loja(){
 	Loja::salvarAnimais();
 }
 
+
 void Loja::adicionaFuncionario(){
 	int func_id;
 	std::string tipo_funcionario;
@@ -258,6 +259,79 @@ void Loja::adicionaFuncionario(){
 	}
 
 }
+
+
+void Loja::adicionaAnimal(){
+	int auxId;//o usuario digita e o programa busca no map o ponteiro correspondente
+
+	int anim_id;
+	std::string anim_classe;
+	std::string anim_nome; //especie do animal
+	std::string anim_cientifico;
+	char anim_sexo;
+	float anim_tamanho;
+	std::string anim_dieta;
+	std::shared_ptr<Funcionario> anim_veterinario;
+	std::shared_ptr<Funcionario> anim_tratador;
+	std::string anim_batismo;
+
+
+	//ID do animal
+	std::cout<<"Digite o ID do novo animal"<<std::endl;
+	std::cin>>anim_id;
+	std::cin.ignore();//ignorar o a quebra de linha do cin
+
+	//Tipo do animal
+	std::cout<<"Digite a classe do novo animal"<<std::endl;
+	std::getline(std::cin,anim_classe);
+
+	//Nome do animal
+	std::cout<<"Digite o nome da especie do novo funcionário"<<std::endl;
+	std::getline(std::cin,anim_nome);
+
+	//Nome científico do animal
+	std::cout<<"Digite o nome científico do novo funcionário"<<std::endl;
+	std::getline(std::cin,anim_cientifico);
+
+	//Sexo do animal
+	std::cout<<"Digite o sexo do novo animal"<<std::endl;
+	std::cin>>anim_sexo;
+	std::cin.ignore();//ignorar o a quebra de linha do cin
+
+	//Tamanho do animal
+	std::cout<<"Digite o tamanho do novo animal"<<std::endl;
+	std::cin>>anim_tamanho;
+	std::cin.ignore();//ignorar o a quebra de linha do cin
+
+	//Dieta do animal
+	std::cout<<"Digite a dieta do novo animal"<<std::endl;
+	std::getline(std::cin,anim_dieta);
+
+	//ID do veterinário
+	std::cout<<"Digite o ID do veterinário responsável pelo novo animal"<<std::endl;
+	std::cin>>auxId;
+	anim_veterinario = funcionario_db[auxId];
+	std::cin.ignore();//ignorar o a quebra de linha do cin
+
+	//ID do tratador
+	std::cout<<"Digite o ID do tratador responsável pelo novo animal"<<std::endl;
+	std::cin>>auxId;
+	anim_tratador = funcionario_db[auxId];
+	std::cin.ignore();//ignorar o a quebra de linha do cin
+	
+	//Especialidade do animal
+	std::cout<<"Digite o nome de batismo do novo animal"<<std::endl;
+	std::getline(std::cin,anim_batismo);
+
+	//INICIALIZA ANIMAL
+		animal_db[anim_id] = std::make_shared<Animal>(
+													  Animal(anim_id, anim_classe, anim_nome
+															,anim_cientifico,anim_sexo, anim_tamanho
+															,anim_dieta, anim_veterinario, anim_tratador,anim_batismo));
+
+}
+
+
 
 
 void Loja::func_imprimePorId(int func_id){
