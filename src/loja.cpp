@@ -211,29 +211,33 @@ void Loja::adicionarFuncionario(){
 		//ID do funcionario
 		std::cout<<"Digite o ID do novo funcionário"<<std::endl;
 		std::cin>>func_id;
-		if(funcionario_db.find(func_id) != funcionario_db.end()){throw 1;}//tratamento de exceção
-
+		if(!std::cin){throw 9;}//input léxico em campo numerico
+		if(func_id<=0){throw 10;}//input negativo, aceitar somente numeros naturais
+		if(funcionario_db.find(func_id) != funcionario_db.end()){throw 1;}//ERRO: ID em uso
 		std::cin.ignore();//ignorar o a quebra de linha do cin
+		
+		
 		//Tipo do funcionario
 		std::cout<<"Digite a Função do novo funcionário"<<std::endl;
 		std::getline(std::cin,tipo_funcionario);
-		if(tipo_funcionario!="Veterinario"&&tipo_funcionario!="Tratador"){throw 2;}//tratamento de exceção
+		if(tipo_funcionario!="Veterinario"&&tipo_funcionario!="Tratador"){throw 2;}//ERRO: Informação inválida dada como input
 
 		//Nome do funcionario
 		std::cout<<"Digite o Nome do novo funcionário"<<std::endl;
 		std::getline(std::cin,func_nome);
-		if(func_nome.size()==0){throw 3;}
+		if(func_nome.size()==0){throw 3;}//ERRO: campo obrigatorio não preenchido
 
 		//CPF do funcionario
 		std::cout<<"Digite o CPF do novo funcionário"<<std::endl;
 		std::getline(std::cin,func_cpf);
-		if(func_cpf.size()==0){throw 4;}
+		if(func_cpf.size()==0){throw 4;}//ERRO: campo obrigatorio não preenchido
 
 		//Idade do funcionario
 		std::cout<<"Digite a Idade do novo funcionário"<<std::endl;
 		std::cin>>func_idade;
+		if(!std::cin){throw 9;}//input léxico em campo numerico
+		if(func_idade<18||func_idade>120){throw 5;}//Limite de idade
 		std::cin.ignore();//ignorar o a quebra de linha do cin
-		if(func_idade<18||func_idade>120){throw 5;}
 
 		
 		//Tipo sanguíneo do funcionario
@@ -242,19 +246,19 @@ void Loja::adicionarFuncionario(){
 		if (  func_tipo_sanguineo!="O"
 			&&func_tipo_sanguineo!="A"
 			&&func_tipo_sanguineo!="B"
-			&&func_tipo_sanguineo!="AB"){throw 6;}
+			&&func_tipo_sanguineo!="AB"){throw 6;}//ERRO: Informação inválida dada como input
 
 		//Fator RH do funcionario
 		std::cout<<"Digite o fator RH do novo funcionário"<<std::endl;
 		std::cin>>func_fatorRH;
 		std::cin.ignore();//ignorar o a quebra de linha do cin
-		if (func_fatorRH!='+' && func_fatorRH!='-'){throw 7;}
+		if (func_fatorRH!='+' && func_fatorRH!='-'){throw 7;}//ERRO: Informação inválida dada como input
 
 		
 		//Especialidade do funcionario
 		std::cout<<"Digite a especialidade do novo funcionário"<<std::endl;
-		std::getline(std::cin,func_especialidade);
-		if(func_especialidade.size()==0){throw 8;}
+		std::getline(std::cin,func_especialidade);//ignorar o a quebra de linha do cin
+		if(func_especialidade.size()==0){throw 8;}//ERRO: campo obrigatorio não preenchido
 
 		//INICIALIZAR O FUNCIONARIO
 		if(tipo_funcionario=="Veterinario"){
@@ -271,8 +275,44 @@ void Loja::adicionarFuncionario(){
 																	func_fatorRH,func_especialidade));
 		}
 	}catch(int error_code){
-		std::cout<<"ERRO "<<error_code<<std::endl;
+		//std::cout<<"ERRO "<<error_code<<std::endl;  //<<' '<<func_id<<std::endl;//usar input como parte da mensagem
 
+		std::cout << "ERRO: ";
+		switch(error_code)
+		{
+			case 1:
+				std::cout << "o número "<< func_id <<" já é o ID de outro funcionário"<<std::endl;
+				break;
+			case 2:
+				std::cout << "o sistema só aceita funções: Tratador e Veterinario"<<std::endl;
+				break;
+			case 3:
+				std::cout << "o nome do funcionário é obrigatório para o cadastro"<<std::endl;
+				break;
+			case 4:
+				std::cout << "o cpf do funcionário é obrigatório para o cadastro"<<std::endl;
+				break;
+			case 5:
+				std::cout << "idade não aceita pelo sistema ou pela política de contratação da empresa"<<std::endl;
+				break;
+			case 6:
+				std::cout << "insira um tipo sanguíneo válido para o registro do funcionário (A,B,AB,O)"<<std::endl;
+				break;
+			case 7:
+				std::cout << "insira um fator RH válido para o registro do funcionário (+ , -)"<<std::endl;
+				break;
+			case 8:
+				std::cout << "a especialidade do funcionário é obrigatória para o cadastro"<<std::endl;
+				break;
+			case 9:
+				std::cout << "insira um número válido para prosseguir com o cadastro"<<std::endl;
+				break;
+			case 10:
+				std::cout << "O cadastro só trabalha com numeros positivos"<<std::endl;
+						  << "o valor 0 está reservado para quando não há um funcionário para uma determinada função"<<std::endl;
+				break;
+
+		}
 	}
 
 }
