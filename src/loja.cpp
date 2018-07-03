@@ -331,7 +331,21 @@ void Loja::adicionarAnimal(){
 
 }
 
+void Loja::removerFuncionario(){
+	int func_id;
+	std::cout<<"Qual o id do funcionario que você gostaria de remover do registro? "<<std::endl;
+	std::cin>>func_id;
+	std::cout<<"Removendo "<<funcionario_db[func_id]->getNome()<<std::endl;
+	funcionario_db.erase(func_id);
+}
 
+void Loja::removerAnimal(){
+	int anim_id;
+	std::cout<<"Qual o id do animal que você gostaria de remover do registro? "<<std::endl;
+	std::cin>>anim_id;
+	std::cout<<"Removendo "<<animal_db[anim_id]->getBatismo()<<std::endl;
+	animal_db.erase(anim_id);
+}
 
 
 void Loja::func_imprimePorId(int func_id){

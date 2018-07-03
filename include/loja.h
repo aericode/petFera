@@ -37,6 +37,8 @@ public:
 	void anim_imprimePorId(int);
 	void adicionarFuncionario();
 	void adicionarAnimal();
+	void removerFuncionario();
+	void removerAnimal();
 };
 
 

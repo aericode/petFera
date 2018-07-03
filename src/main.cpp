@@ -29,14 +29,14 @@ int main(){
 	int id;
 	//loja.func_imprimePorId(1);
 	//loja.anim_imprimePorId(2);
-	loja.adicionarAnimal();
+	loja.removerAnimal();
 
-
+	/*
 	std::cout<<"qual o id do animal que voce quer ver?"<<std::endl;
 	std::cin>>id;
 
 	loja.anim_imprimePorId(id);
-
+	*/
 	//loja.func_imprimePorId(9090);
 
 
