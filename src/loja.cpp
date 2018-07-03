@@ -207,41 +207,54 @@ void Loja::adicionarFuncionario(){
 	char func_fatorRH;
 	std::string func_especialidade;
 
-	try(){
+	try{
 		//ID do funcionario
 		std::cout<<"Digite o ID do novo funcionário"<<std::endl;
 		std::cin>>func_id;
+		if(funcionario_db.find(func_id) != funcionario_db.end()){throw 1;}//tratamento de exceção
 
 		std::cin.ignore();//ignorar o a quebra de linha do cin
 		//Tipo do funcionario
 		std::cout<<"Digite a Função do novo funcionário"<<std::endl;
 		std::getline(std::cin,tipo_funcionario);
+		if(tipo_funcionario!="Veterinario"&&tipo_funcionario!="Tratador"){throw 2;}//tratamento de exceção
 
 		//Nome do funcionario
 		std::cout<<"Digite o Nome do novo funcionário"<<std::endl;
 		std::getline(std::cin,func_nome);
+		if(func_nome.size()==0){throw 3;}
 
 		//CPF do funcionario
 		std::cout<<"Digite o CPF do novo funcionário"<<std::endl;
 		std::getline(std::cin,func_cpf);
+		if(func_cpf.size()==0){throw 4;}
 
 		//Idade do funcionario
 		std::cout<<"Digite a Idade do novo funcionário"<<std::endl;
 		std::cin>>func_idade;
-
 		std::cin.ignore();//ignorar o a quebra de linha do cin
+		if(func_idade<18||func_idade>120){throw 5;}
+
+		
 		//Tipo sanguíneo do funcionario
 		std::cout<<"Digite o Tipo sanguíneo do novo funcionário"<<std::endl;
 		std::getline(std::cin,func_tipo_sanguineo);
+		if (  func_tipo_sanguineo!="O"
+			&&func_tipo_sanguineo!="A"
+			&&func_tipo_sanguineo!="B"
+			&&func_tipo_sanguineo!="AB"){throw 6;}
 
 		//Fator RH do funcionario
 		std::cout<<"Digite o fator RH do novo funcionário"<<std::endl;
 		std::cin>>func_fatorRH;
-
 		std::cin.ignore();//ignorar o a quebra de linha do cin
+		if (func_fatorRH!='+' && func_fatorRH!='-'){throw 7;}
+
+		
 		//Especialidade do funcionario
 		std::cout<<"Digite a especialidade do novo funcionário"<<std::endl;
 		std::getline(std::cin,func_especialidade);
+		if(func_especialidade.size()==0){throw 8;}
 
 		//INICIALIZAR O FUNCIONARIO
 		if(tipo_funcionario=="Veterinario"){
@@ -257,7 +270,8 @@ void Loja::adicionarFuncionario(){
 																	func_idade,func_tipo_sanguineo,
 																	func_fatorRH,func_especialidade));
 		}
-	}catch(...){
+	}catch(int error_code){
+		std::cout<<"ERRO "<<error_code<<std::endl;
 
 	}
 
