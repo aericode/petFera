@@ -26,11 +26,16 @@ int main(){
 	std::map <int, Funcionario> funcionario_db; 
 	*/
 	Loja loja;
-
+	int id;
 	//loja.func_imprimePorId(1);
 	//loja.anim_imprimePorId(2);
-	loja.adicionaFuncionario();
-	loja.exibirFuncionarios();
+	loja.adicionaAnimal();
+
+
+	std::cout<<"qual o id do animal que voce quer ver?"<<std::endl;
+	std::cin>>id;
+
+	loja.anim_imprimePorId(id);
 
 	//loja.func_imprimePorId(9090);
 
