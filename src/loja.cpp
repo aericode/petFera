@@ -286,11 +286,11 @@ void Loja::adicionaAnimal(){
 	std::getline(std::cin,anim_classe);
 
 	//Nome do animal
-	std::cout<<"Digite o nome da especie do novo funcionário"<<std::endl;
+	std::cout<<"Digite o nome da especie do novo animal"<<std::endl;
 	std::getline(std::cin,anim_nome);
 
 	//Nome científico do animal
-	std::cout<<"Digite o nome científico do novo funcionário"<<std::endl;
+	std::cout<<"Digite o nome científico do novo animal"<<std::endl;
 	std::getline(std::cin,anim_cientifico);
 
 	//Sexo do animal
@@ -319,7 +319,7 @@ void Loja::adicionaAnimal(){
 	anim_tratador = funcionario_db[auxId];
 	std::cin.ignore();//ignorar o a quebra de linha do cin
 	
-	//Especialidade do animal
+	//Nome de batismo do animal
 	std::cout<<"Digite o nome de batismo do novo animal"<<std::endl;
 	std::getline(std::cin,anim_batismo);
 
