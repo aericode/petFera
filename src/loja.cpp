@@ -140,50 +140,74 @@ void Loja::carregarAnimais(){
 	
 	
 		while(ip.good()){
-			//ID
-			getline(ip,temp,';');
-			anim_id = std::stoi(temp,&sz);//converte a string temp em int
+				//ID
+				getline(ip,temp,';');
+				anim_id = std::stoi(temp,&sz);//converte a string temp em int
 
-			//CLASSE
-			getline(ip,anim_classe,';');
+				//CLASSE
+				getline(ip,anim_classe,';');
 
-			//NOME (da especie)
-			getline(ip,anim_nome,';');
+				//NOME (da especie)
+				getline(ip,anim_nome,';');
 
-			//NOME CIENTIFICO
-			getline(ip,anim_cientifico,';');	
+				//NOME CIENTIFICO
+				getline(ip,anim_cientifico,';');	
 
-			//SEXO
-			getline(ip,temp,';');
-			anim_sexo = *temp.c_str();//converte a string temp em char
+				//SEXO
+				getline(ip,temp,';');
+				anim_sexo = *temp.c_str();//converte a string temp em char
 
-			//TAMANHO
-			getline(ip,temp,';');
-			anim_tamanho = ::atof(temp.c_str());//converte a string temp em float
+				//TAMANHO
+				getline(ip,temp,';');
+				anim_tamanho = ::atof(temp.c_str());//converte a string temp em float
 
-			//DIETA
-			getline(ip,anim_dieta,';');
+				//DIETA
+				getline(ip,anim_dieta,';');
 
-			//VETERINARIO
-			getline(ip,temp,';');//recebe o numero de registro do funcionario
-			temp_int = std::stoi(temp,&sz);//converte esse numero em int
-			anim_veterinario = funcionario_db[temp_int];
+				//VETERINARIO
+				getline(ip,temp,';');//recebe o numero de registro do funcionario
+				temp_int = std::stoi(temp,&sz);//converte esse numero em int
+				anim_veterinario = funcionario_db[temp_int];
 
-			//TRATADOR
-			getline(ip,temp,';');//recebe o numero de registro do funcionario
-			temp_int = std::stoi(temp,&sz);//converte esse numero em int
-			anim_tratador = funcionario_db[temp_int];
+				//TRATADOR
+				getline(ip,temp,';');//recebe o numero de registro do funcionario
+				temp_int = std::stoi(temp,&sz);//converte esse numero em int
+				anim_tratador = funcionario_db[temp_int];
 
-			//BATISMO
-			getline(ip,anim_batismo,'\n');
+				//BATISMO
+				getline(ip,anim_batismo,'\n');
+				
+				//INICIALIZA ANIMAL
+				if(anim_classe=="Mammalia"){
+					animal_db[anim_id] = std::make_shared<Mamifero>(
+															Mamifero(anim_id, anim_classe, anim_nome
+																	,anim_cientifico,anim_sexo, anim_tamanho
+																	,anim_dieta, anim_veterinario, anim_tratador,anim_batismo));
+				}
+
+				if(anim_classe=="Reptilia"){
+					animal_db[anim_id] = std::make_shared<Reptil>(
+															Reptil  (anim_id, anim_classe, anim_nome
+																	,anim_cientifico,anim_sexo, anim_tamanho
+																	,anim_dieta, anim_veterinario, anim_tratador,anim_batismo));
+				}
+
+				if(anim_classe=="Amphibia"){
+					animal_db[anim_id] = std::make_shared<Anfibio>(
+															Anfibio (anim_id, anim_classe, anim_nome
+																	,anim_cientifico,anim_sexo, anim_tamanho
+																	,anim_dieta, anim_veterinario, anim_tratador,anim_batismo));
+				}
+
+				if(anim_classe=="Aves"){
+					animal_db[anim_id] = std::make_shared<Ave>(
+															Ave     (anim_id, anim_classe, anim_nome
+																	,anim_cientifico,anim_sexo, anim_tamanho
+																	,anim_dieta, anim_veterinario, anim_tratador,anim_batismo));															
+				}
 			
-			//INICIALIZA ANIMAL
-			animal_db[anim_id] = std::make_shared<Animal>(
-														  Animal(anim_id, anim_classe, anim_nome
-																,anim_cientifico,anim_sexo, anim_tamanho
-																,anim_dieta, anim_veterinario, anim_tratador,anim_batismo));
-																	
 			}
+
 		}catch(int error_code){
 			switch(error_code){
 				case 1:
@@ -441,10 +465,34 @@ void Loja::adicionarAnimal(){
 
 
 		//INICIALIZA ANIMAL
-		animal_db[anim_id] = std::make_shared<Animal>(
-													  Animal(anim_id, anim_classe, anim_nome
+
+		if(anim_classe=="Mammalia"){
+			animal_db[anim_id] = std::make_shared<Mamifero>(
+													Mamifero(anim_id, anim_classe, anim_nome
 															,anim_cientifico,anim_sexo, anim_tamanho
 															,anim_dieta, anim_veterinario, anim_tratador,anim_batismo));
+		}
+
+		if(anim_classe=="Reptilia"){
+			animal_db[anim_id] = std::make_shared<Reptil>(
+													Reptil  (anim_id, anim_classe, anim_nome
+															,anim_cientifico,anim_sexo, anim_tamanho
+															,anim_dieta, anim_veterinario, anim_tratador,anim_batismo));
+		}
+
+		if(anim_classe=="Amphibia"){
+			animal_db[anim_id] = std::make_shared<Anfibio>(
+													Anfibio (anim_id, anim_classe, anim_nome
+															,anim_cientifico,anim_sexo, anim_tamanho
+															,anim_dieta, anim_veterinario, anim_tratador,anim_batismo));
+		}
+
+		if(anim_classe=="Aves"){
+			animal_db[anim_id] = std::make_shared<Ave>(
+													Ave     (anim_id, anim_classe, anim_nome
+															,anim_cientifico,anim_sexo, anim_tamanho
+															,anim_dieta, anim_veterinario, anim_tratador,anim_batismo));
+		}
 
 	}catch(int error_code){
 
