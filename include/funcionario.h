@@ -33,6 +33,9 @@ public:
 	std::string getEspecialidade();
 	void setEspecialidade(std::string);
 
+	std::string getTipo_funcionario();
+	void setTipo_funcionario(std::string);
+
 	friend std::ostream& operator<<(std::ostream& os, const Funcionario& funcionario);
 };
 

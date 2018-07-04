@@ -308,7 +308,7 @@ void Loja::adicionarFuncionario(){
 				std::cout << "insira um número válido para prosseguir com o cadastro"<<std::endl;
 				break;
 			case 10:
-				std::cout << "O cadastro só trabalha com numeros positivos"<<std::endl;
+				std::cout << "O cadastro só trabalha com numeros positivos"<<std::endl
 						  << "o valor 0 está reservado para quando não há um funcionário para uma determinada função"<<std::endl;
 				break;
 
@@ -332,59 +332,125 @@ void Loja::adicionarAnimal(){
 	std::shared_ptr<Funcionario> anim_tratador;
 	std::string anim_batismo;
 
+	try{
+		//ID do animal
+		std::cout<<"Digite o ID do novo animal"<<std::endl;
+		std::cin>>anim_id;
+		std::cin.ignore();//ignorar o a quebra de linha do cin
+		if(!std::cin){throw 11;}//input léxico em campo numerico
+		if(anim_id<0){throw 12;}//input negativo, aceitar somente numeros naturais
+		if(animal_db.find(anim_id) != animal_db.end()){throw 1;}//ERRO: ID em uso
 
-	//ID do animal
-	std::cout<<"Digite o ID do novo animal"<<std::endl;
-	std::cin>>anim_id;
-	std::cin.ignore();//ignorar o a quebra de linha do cin
+		//Tipo do animal
+		std::cout<<"Digite a classe do novo animal"<<std::endl;
+		std::getline(std::cin,anim_classe);
+		if (  anim_classe!="Aves"
+			&&anim_classe!="Amphibia"
+			&&anim_classe!="Reptilia"
+			&&anim_classe!="Mammalia"){throw 2;}//ERRO: Informação inválida dada como input
 
-	//Tipo do animal
-	std::cout<<"Digite a classe do novo animal"<<std::endl;
-	std::getline(std::cin,anim_classe);
 
-	//Nome do animal
-	std::cout<<"Digite o nome da especie do novo animal"<<std::endl;
-	std::getline(std::cin,anim_nome);
+		//Nome do animal
+		std::cout<<"Digite o nome da especie do novo animal"<<std::endl;
+		std::getline(std::cin,anim_nome);
+		if(anim_nome.size()==0){throw 3;}//ERRO: Campo obrigatorio não preenchido
 
-	//Nome científico do animal
-	std::cout<<"Digite o nome científico do novo animal"<<std::endl;
-	std::getline(std::cin,anim_cientifico);
+		//Nome científico do animal
+		std::cout<<"Digite o nome científico do novo animal"<<std::endl;
+		std::getline(std::cin,anim_cientifico);
+		if(anim_cientifico.size()==0){throw 4;}//ERRO: Campo obrigatorio não preenchido
 
-	//Sexo do animal
-	std::cout<<"Digite o sexo do novo animal"<<std::endl;
-	std::cin>>anim_sexo;
-	std::cin.ignore();//ignorar o a quebra de linha do cin
+		//Sexo do animal
+		std::cout<<"Digite o sexo do novo animal"<<std::endl;
+		std::cin>>anim_sexo;
+		std::cin.ignore();//ignorar o a quebra de linha do cin
+		if (anim_sexo!='M' && anim_sexo!='F'){throw 5;}//ERRO: input inválido
 
-	//Tamanho do animal
-	std::cout<<"Digite o tamanho do novo animal"<<std::endl;
-	std::cin>>anim_tamanho;
-	std::cin.ignore();//ignorar o a quebra de linha do cin
+		//Tamanho do animal
+		std::cout<<"Digite o tamanho do novo animal (em metros)"<<std::endl;
+		std::cin>>anim_tamanho;
+		std::cin.ignore();//ignorar o a quebra de linha do cin
+		if(!std::cin){throw 11;}//input léxico em campo numerico
+		if(anim_tamanho<=0){throw 12;}//input negativo, aceitar somente numeros reais positivos
 
-	//Dieta do animal
-	std::cout<<"Digite a dieta do novo animal"<<std::endl;
-	std::getline(std::cin,anim_dieta);
+		//Dieta do animal
+		std::cout<<"Digite a dieta do novo animal"<<std::endl;
+		std::getline(std::cin,anim_dieta);
+		if(anim_dieta.size()==0){throw 6;}//ERRO: Campo obrigatorio não preenchido
 
-	//ID do veterinário
-	std::cout<<"Digite o ID do veterinário responsável pelo novo animal"<<std::endl;
-	std::cin>>auxId;
-	anim_veterinario = funcionario_db[auxId];
-	std::cin.ignore();//ignorar o a quebra de linha do cin
+		//ID do veterinário
+		std::cout<<"Digite o ID do veterinário responsável pelo novo animal"<<std::endl;
+		std::cin>>auxId;
+		anim_veterinario = funcionario_db[auxId];
+		std::cin.ignore();//ignorar o a quebra de linha do cin
+		if(auxId!=0 && funcionario_db.find(auxId) == funcionario_db.end()){throw 7;}//ERRO: Não há funcionário cadastrado com esse id
+		if(auxId!=0 && funcionario_db[auxId]->getTipo_funcionario() != "Veterinario"){throw 8;}//ERRO: O funcionario não é veterinario
 
-	//ID do tratador
-	std::cout<<"Digite o ID do tratador responsável pelo novo animal"<<std::endl;
-	std::cin>>auxId;
-	anim_tratador = funcionario_db[auxId];
-	std::cin.ignore();//ignorar o a quebra de linha do cin
-	
-	//Nome de batismo do animal
-	std::cout<<"Digite o nome de batismo do novo animal"<<std::endl;
-	std::getline(std::cin,anim_batismo);
+		//ID do tratador
+		std::cout<<"Digite o ID do tratador responsável pelo novo animal"<<std::endl;
+		std::cin>>auxId;
+		anim_tratador = funcionario_db[auxId];
+		std::cin.ignore();//ignorar o a quebra de linha do cin
+		if(auxId!=0 && funcionario_db.find(auxId) == funcionario_db.end()){throw 7;}//ERRO: Não há funcionário cadastrado com esse id
+		if(auxId!=0 && funcionario_db[auxId]->getTipo_funcionario() != "Tratador"){throw 9;}//ERRO: O funcionario não é tratador
+		
+		//Nome de batismo do animal
+		std::cout<<"Digite o nome de batismo do novo animal"<<std::endl;
+		std::getline(std::cin,anim_batismo);
+		if (anim_batismo.size()==0){throw 10;}
 
-	//INICIALIZA ANIMAL
+
+		//INICIALIZA ANIMAL
 		animal_db[anim_id] = std::make_shared<Animal>(
 													  Animal(anim_id, anim_classe, anim_nome
 															,anim_cientifico,anim_sexo, anim_tamanho
 															,anim_dieta, anim_veterinario, anim_tratador,anim_batismo));
+
+	}catch(int error_code){
+
+		std::cout << "ERRO: ";
+		switch(error_code)
+		{
+			case 1:
+				std::cout << "o número "<< anim_id <<" já é o ID de outro animal"<<std::endl;
+				break;
+			case 2:
+				std::cout << "o sistema só aceita estas classes: Aves, Amphibia, Reptilia e Mammalia"<<std::endl;
+				break;
+			case 3:
+				std::cout << "o nome da especie é obrigatório para o cadastro"<<std::endl;
+				break;
+			case 4:
+				std::cout << "o nome da científico é obrigatório para o cadastro"<<std::endl;
+				break;
+			case 5:
+				std::cout << "insira um caractere válido para registrar o sexo do animal (M , F)"<<std::endl;
+				break;
+			case 6:
+				std::cout << "informar a dieta do animal é obrigatória para o cadastro"<<std::endl;
+				break;
+			case 7:
+				std::cout << "não há funcionário cadastrado com o ID "<< auxId <<std::endl;
+				break;
+			case 8:
+				std::cout << "o funcionário cadastrado não é veterinário"<<std::endl;
+				break;
+			case 9:
+				std::cout << "o funcionário cadastrado não é tratador"<<std::endl;
+				break;
+			case 10:
+				std::cout << "o nome de batismo é obrigatório para o cadastro"<<std::endl;
+				break;
+			case 11:
+				std::cout << "insira um número válido para prosseguir com o cadastro"<<std::endl;
+				break;
+			case 12:
+				std::cout << "O cadastro só trabalha com numeros positivos"<<std::endl;
+				break;
+
+		}
+
+	}
 
 }
 

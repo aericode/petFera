@@ -22,6 +22,9 @@ void Funcionario::setFatorRH(char fatorRH){m_fatorRH = fatorRH;}
 std::string Funcionario::getEspecialidade(){return m_especialidade;}
 void Funcionario::setEspecialidade(std::string especialidade){m_especialidade = especialidade;}
 
+std::string Funcionario::getTipo_funcionario(){return m_tipo_funcionario;}
+void Funcionario::setTipo_funcionario(std::string tipo_funcionario){m_tipo_funcionario = tipo_funcionario;}
+
 std::string Funcionario::emiteSave(){ //transformar em função com template
 	std::string dataSave;
 	std::string separador = ";";
