@@ -104,7 +104,7 @@ void Loja::carregarFuncionarios(){
 				std::cout<<"Arquivo funcionario_db.csv não foi encontrado, inicializando novo registro"<<std::endl;
 				break;
 			case 2:
-				std::cout<<"Registro de animais vazio, inicializando sem animais"<<std::endl;
+				std::cout<<"Registro de animais vazio, inicializando sem animais cadastrados"<<std::endl;
 				break;
 		}
 	}
@@ -374,10 +374,10 @@ void Loja::adicionarAnimal(){
 		//ID do animal
 		std::cout<<"Digite o ID do novo animal"<<std::endl;
 		std::cin>>anim_id;
-		std::cin.ignore();//ignorar o a quebra de linha do cin
 		if(!std::cin){throw 11;}//input léxico em campo numerico
 		if(anim_id<0){throw 12;}//input negativo, aceitar somente numeros naturais
 		if(animal_db.find(anim_id) != animal_db.end()){throw 1;}//ERRO: ID em uso
+		std::cin.ignore();//ignorar o a quebra de linha do cin
 
 		//Tipo do animal
 		std::cout<<"Digite a classe do novo animal"<<std::endl;
@@ -515,7 +515,7 @@ void Loja::removerFuncionario(){
 		}
 	}
 }
-
+//
 void Loja::removerAnimal(){
 	int anim_id;
 	std::cout<<"Qual o id do animal que você gostaria de remover do registro? "<<std::endl;
@@ -592,17 +592,7 @@ void Loja::anim_imprimePorId(){
 	}
 }
 
-/*
-PETFERA
-1. Ver as informações de um animal (por ID)
-2. Ver as informações de um funcionário (por ID)
-3. Cadastrar um animal
-4. Cadastrar um funcionário
-5. Listar todos os animais
-6. Listar todos os funcionários
 
-
-*/
 void Loja::interface(){
 	int opcao;
 	bool sair = false;
@@ -619,7 +609,6 @@ void Loja::interface(){
 					<<"8. Listar todos os funcionários"<<std::endl
 					<<"9. Sair"<<std::endl;
 		try{
-
 
 			//Usuário decide qual será o procedimento
 			std::cin>>opcao;
@@ -657,7 +646,7 @@ void Loja::interface(){
 					break;
 			}
 		}catch(...){
-			
+			sair = true;
 
 			
 		}
