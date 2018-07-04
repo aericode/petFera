@@ -228,17 +228,6 @@ void Loja::salvarAnimais(){
 }
 
 
-Loja::Loja(){
-	Loja::carregarFuncionarios();
-	Loja::carregarAnimais();
-}
-
-Loja::~Loja(){
-	Loja::salvarFuncionarios();
-	Loja::salvarAnimais();
-}
-
-
 void Loja::adicionarFuncionario(){
 	int func_id;
 	std::string tipo_funcionario;
@@ -424,6 +413,7 @@ void Loja::adicionarAnimal(){
 		//ID do veterinário
 		std::cout<<"Digite o ID do veterinário responsável pelo novo animal"<<std::endl;
 		std::cin>>auxId;
+		if(!std::cin){throw 11;}//input léxico em campo numerico
 		anim_veterinario = funcionario_db[auxId];
 		std::cin.ignore();//ignorar o a quebra de linha do cin
 		if(auxId!=0 && funcionario_db.find(auxId) == funcionario_db.end()){throw 7;}//ERRO: Não há funcionário cadastrado com esse id
@@ -432,6 +422,7 @@ void Loja::adicionarAnimal(){
 		//ID do tratador
 		std::cout<<"Digite o ID do tratador responsável pelo novo animal"<<std::endl;
 		std::cin>>auxId;
+		if(!std::cin){throw 11;}//input léxico em campo numerico
 		anim_tratador = funcionario_db[auxId];
 		std::cin.ignore();//ignorar o a quebra de linha do cin
 		if(auxId!=0 && funcionario_db.find(auxId) == funcionario_db.end()){throw 7;}//ERRO: Não há funcionário cadastrado com esse id
@@ -542,10 +533,116 @@ void Loja::removerAnimal(){
 }
 
 
-void Loja::func_imprimePorId(int func_id){
-	std::cout<<*funcionario_db[func_id]<<std::endl;
+void Loja::func_imprimePorId(){
+	int func_id;
+	std::cin>>func_id;
+	try{
+		if(!std::cin){throw 1;}
+		if(func_id<0){throw 2;}
+		if(funcionario_db.find(func_id) == funcionario_db.end()){throw 3;}
+		std::cout<<*funcionario_db[func_id]<<std::endl;
+	}catch(int error_code){
+		switch(error_code)
+		{
+			case 1:
+				std::cout << "O ID dos funcionários utiliza indexação numérica" <<std::endl;
+				break;
+			case 2:
+				std::cout << "O número digitado é inválido" <<std::endl;
+				break;
+			case 3:
+				std::cout << "o ID "<< func_id <<" não está associado a nenhum funcionário" <<std::endl;
+				break;
+		}
+
+	}
 }
 
-void Loja::anim_imprimePorId(int anim_id){
-	std::cout<<*animal_db[anim_id]<<std::endl;
+
+void Loja::anim_imprimePorId(){
+	int anim_id;
+	std::cin>>anim_id;
+	try{
+		if(!std::cin){throw 1;}
+		if(anim_id<0){throw 2;}
+		if(animal_db.find(anim_id) == animal_db.end()){throw 3;}
+		std::cout<<*animal_db[anim_id]<<std::endl;
+	}catch(int error_code){
+		switch(error_code)
+		{
+			case 1:
+				std::cout << "O ID dos animais utiliza indexação numérica" <<std::endl;
+				break;
+			case 2:
+				std::cout << "O número digitado é inválido" <<std::endl;
+				break;
+			case 3:
+				std::cout << "o ID "<< anim_id <<" não está associado a nenhum animal" <<std::endl;
+				break;
+		}
+
+	}
+}
+
+/*
+PETFERA
+1. Ver as informações de um animal (por ID)
+2. Ver as informações de um funcionário (por ID)
+3. Cadastrar um animal
+4. Cadastrar um funcionário
+5. Listar todos os animais
+6. Listar todos os funcionários
+
+
+*/
+void Loja::interface(){
+	int opcao;
+	bool sair = false;
+
+	while(!sair){
+		std::cout   <<"1. Ver as informações de um animal (por ID)"<<std::endl
+					<<"2. Ver as informações de um funcionário (por ID)"<<std::endl
+					<<"3. Cadastrar um animal"<<std::endl
+					<<"4. Cadastrar um funcionário"<<std::endl
+					<<"5. Listar todos os animais"<<std::endl
+					<<"6. Listar todos os funcionários"<<std::endl
+					<<"7. Sair"<<std::endl;
+		try{
+
+
+			//Usuário decide qual será o procedimento
+			std::cin>>opcao;
+			if(!std::cin){throw 1;}//input léxico em campo numerico
+			if(opcao<1||opcao>7){throw 2;}//opção inválida
+
+			//Execução do procedimento
+			switch(opcao){
+				case 1:
+					std::cout << "Digite o ID do animal que deseja consultar" <<std::endl;
+					Loja::func_imprimePorId();						
+
+					break;
+				case 2:
+					std::cout << "PLACEHOLDER, TIRE PQ É UM PLACEHOLDER" <<std::endl;
+					break;
+			}
+		}catch(...){
+			
+
+			
+		}
+	}
+
+}
+
+
+Loja::Loja(){
+	Loja::carregarFuncionarios();
+	Loja::carregarAnimais();
+	Loja::interface();
+}
+
+Loja::~Loja(){
+	Loja::salvarFuncionarios();
+	Loja::salvarAnimais();
 }

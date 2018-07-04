@@ -33,12 +33,14 @@ public:
 	void salvarFuncionarios();
 	void exibirFuncionarios();
 	void salvarAnimais();
-	void func_imprimePorId(int);
-	void anim_imprimePorId(int);
+	void func_imprimePorId();
+	void anim_imprimePorId();
 	void adicionarFuncionario();
 	void adicionarAnimal();
 	void removerFuncionario();
 	void removerAnimal();
+
+	void interface();
 };
 
 
