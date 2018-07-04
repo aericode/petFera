@@ -205,6 +205,12 @@ void Loja::exibirFuncionarios(){
 	}
 }
 
+void Loja::exibirAnimais(){
+	for(auto it = animal_db.cbegin(); it != animal_db.cend(); ++it){
+    	std::cout << *(it->second) << std::endl;
+	}
+}
+
 void Loja::salvarFuncionarios(){
 	std::ofstream op;//abreviação para output
 	op.open("./data/funcionario_db.csv");
@@ -534,6 +540,7 @@ void Loja::removerAnimal(){
 
 
 void Loja::func_imprimePorId(){
+	std::cout << "Digite o ID do funcionario que deseja consultar" <<std::endl;
 	int func_id;
 	std::cin>>func_id;
 	try{
@@ -560,6 +567,7 @@ void Loja::func_imprimePorId(){
 
 
 void Loja::anim_imprimePorId(){
+	std::cout << "Digite o ID do animal que deseja consultar" <<std::endl;
 	int anim_id;
 	std::cin>>anim_id;
 	try{
@@ -599,31 +607,53 @@ void Loja::interface(){
 	int opcao;
 	bool sair = false;
 
+
 	while(!sair){
 		std::cout   <<"1. Ver as informações de um animal (por ID)"<<std::endl
 					<<"2. Ver as informações de um funcionário (por ID)"<<std::endl
 					<<"3. Cadastrar um animal"<<std::endl
 					<<"4. Cadastrar um funcionário"<<std::endl
-					<<"5. Listar todos os animais"<<std::endl
-					<<"6. Listar todos os funcionários"<<std::endl
-					<<"7. Sair"<<std::endl;
+					<<"5. Remover um animal do cadastro"<<std::endl
+					<<"6. Remover um funcionário do cadastro"<<std::endl
+					<<"7. Listar todos os animais"<<std::endl
+					<<"8. Listar todos os funcionários"<<std::endl
+					<<"9. Sair"<<std::endl;
 		try{
 
 
 			//Usuário decide qual será o procedimento
 			std::cin>>opcao;
 			if(!std::cin){throw 1;}//input léxico em campo numerico
-			if(opcao<1||opcao>7){throw 2;}//opção inválida
+			if(opcao<1||opcao>9){throw 2;}//opção inválida
 
 			//Execução do procedimento
 			switch(opcao){
 				case 1:
-					std::cout << "Digite o ID do animal que deseja consultar" <<std::endl;
-					Loja::func_imprimePorId();						
-
+					Loja::anim_imprimePorId();						
 					break;
 				case 2:
-					std::cout << "PLACEHOLDER, TIRE PQ É UM PLACEHOLDER" <<std::endl;
+					Loja::func_imprimePorId();
+					break;
+				case 3:
+					Loja::adicionarAnimal();
+					break;
+				case 4:
+					Loja::adicionarFuncionario();
+					break;
+				case 5:
+					Loja::removerAnimal();
+					break;
+				case 6:
+					Loja::removerFuncionario();
+					break;
+				case 7:
+					Loja::exibirAnimais();
+					break;
+				case 8:
+					Loja::exibirFuncionarios();
+					break;
+				case 9:
+					sair = true;
 					break;
 			}
 		}catch(...){
