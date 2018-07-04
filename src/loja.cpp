@@ -27,7 +27,7 @@ void Loja::carregarFuncionarios(){
 	std::string temp;
 
 	std::ifstream ip("./data/funcionario_db.csv");
-	try{
+	try{//FALHAS DE ARQUIVO
 		if(!ip.is_open()){throw 1;}// testa se o arquivo foi aberto
 
 		ip.seekg(0, std::ios::end); //testa se o arquivo está vazio
@@ -36,6 +36,7 @@ void Loja::carregarFuncionarios(){
 
 
 		int func_id;
+		std::string func_id_error;
 		std::string tipo_funcionario;
 		std::string func_nome;
 		std::string func_cpf;
@@ -43,50 +44,57 @@ void Loja::carregarFuncionarios(){
 		std::string func_tipo_sanguineo;
 		char func_fatorRH;
 		std::string func_especialidade;
-		
-		while(ip.good()){
-			//ID
-			getline(ip,temp,';');
-			func_id = std::stoi(temp,&sz);//converte a string temp em int
 
-			//TIPO PARA INICIALIZAÇÃO
-			getline(ip,tipo_funcionario,';');
+		try{//FALHAS DE SINTAXE
+			while(ip.good()){
+				//ID
+				getline(ip,temp,';');
+				func_id_error = temp;
+				func_id = std::stoi(temp,&sz);//converte a string temp em int
 
-			//NOME
-			getline(ip,func_nome,';');
+				//TIPO PARA INICIALIZAÇÃO
+				getline(ip,tipo_funcionario,';');
 
-			//CPF
-			getline(ip,func_cpf,';');
+				//NOME
+				getline(ip,func_nome,';');
 
-			//IDADE
-			getline(ip,temp,';');
-			func_idade = (short)std::stoi(temp,&sz);//converte a string temp em int
+				//CPF
+				getline(ip,func_cpf,';');
 
-			//TIPO SANGUINEO
-			getline(ip,func_tipo_sanguineo,';');
+				//IDADE
+				getline(ip,temp,';');
+				func_idade = (short)std::stoi(temp,&sz);//converte a string temp em int
 
-			//FATOR RH
-			getline(ip,temp,';');
-			func_fatorRH = *temp.c_str();//converte a string temp em char
+				//TIPO SANGUINEO
+				getline(ip,func_tipo_sanguineo,';');
 
-			//ESPECIALIDADE
-			getline(ip,func_especialidade,'\n');
+				//FATOR RH
+				getline(ip,temp,';');
+				func_fatorRH = *temp.c_str();//converte a string temp em char
+
+				//ESPECIALIDADE
+				getline(ip,func_especialidade,'\n');
 
 
-			//INICIALIZAR O FUNCIONARIO
-			if(tipo_funcionario=="Veterinario"){
-				funcionario_db[func_id] = std::make_shared<Veterinario>(
-															Veterinario	(func_id,tipo_funcionario,func_nome,func_cpf,
-																		func_idade,func_tipo_sanguineo,
-																		func_fatorRH,func_especialidade));
+				//INICIALIZAR O FUNCIONARIO
+				if(tipo_funcionario=="Veterinario"){
+					funcionario_db[func_id] = std::make_shared<Veterinario>(
+																Veterinario	(func_id,tipo_funcionario,func_nome,func_cpf,
+																			func_idade,func_tipo_sanguineo,
+																			func_fatorRH,func_especialidade));
+				}
+
+				if(tipo_funcionario=="Tratador"){
+					funcionario_db[func_id] = std::make_shared<Tratador>(
+																Tratador	(func_id,tipo_funcionario,func_nome,func_cpf,
+																			func_idade,func_tipo_sanguineo,
+																			func_fatorRH,func_especialidade));
+				}
 			}
+			
+		}catch(...){
+			std::cout<<"Erro de sintaxe, o registro de funcionário ID: "<< func_id_error <<" provocou falha no carregamento"<<std::endl;
 
-			if(tipo_funcionario=="Tratador"){
-				funcionario_db[func_id] = std::make_shared<Tratador>(
-															Tratador	(func_id,tipo_funcionario,func_nome,func_cpf,
-																		func_idade,func_tipo_sanguineo,
-																		func_fatorRH,func_especialidade));
-			}
 		}
 
 	}catch(int error_code){
@@ -98,8 +106,6 @@ void Loja::carregarFuncionarios(){
 			case 2:
 				std::cout<<"Registro de animais vazio, inicializando sem animais"<<std::endl;
 				break;
-			default:
-				std::cout<<"Erro de sintaxe"<<std::endl;
 		}
 	}
 }
