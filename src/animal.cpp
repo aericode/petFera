@@ -55,16 +55,27 @@ std::string Animal::emiteSave(){
 
 
 std::ostream& operator<<(std::ostream& os, const Animal& animal){
-	os<<"ID: "<< animal.m_id << std::endl
-	  <<"Classe: "<< animal.m_classe << std::endl
-	  <<"Espécie: "<< animal.m_nome << std::endl
-	  <<"Nome cientifico: "<< animal.m_cientifico << std::endl
-	  <<"Sexo: "<< animal.m_sexo << std::endl
-	  <<"Tamanho: "<< animal.m_tamanho << std::endl
-	  <<"Dieta: "<< animal.m_dieta << std::endl
-	  <<"Veterinario: "<< animal.m_veterinario->getNome() << std::endl
-	  <<"Tratador: "<< animal.m_tratador->getNome() << std::endl
-	  <<"Nome de batismo: "<< animal.m_batismo << std::endl;
+  os<<"ID: "<< animal.m_id << std::endl
+	<<"Classe: "<< animal.m_classe << std::endl
+	<<"Espécie: "<< animal.m_nome << std::endl
+	<<"Nome cientifico: "<< animal.m_cientifico << std::endl
+	<<"Sexo: "<< animal.m_sexo << std::endl
+	<<"Tamanho: "<< animal.m_tamanho << std::endl
+	<<"Dieta: "<< animal.m_dieta << std::endl;
+
+	if(animal.m_veterinario!=nullptr){
+		os<<"Veterinario: "<< animal.m_veterinario->getNome() << std::endl;
+	}else{ 
+		os<<"Veterinario: Não definido" << std::endl;
+	}
+
+	if(animal.m_veterinario!=nullptr){
+		os<<"Tratador: "<< animal.m_tratador->getNome() << std::endl;
+	}else{ 
+	 	os<<"Tratador: Não definido" << std::endl;
+	}
+
+	os<<"Nome de batismo: "<< animal.m_batismo << std::endl;
 
 	return os;
 }

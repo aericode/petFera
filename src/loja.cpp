@@ -205,7 +205,7 @@ void Loja::carregarAnimais(){
 																	,anim_cientifico,anim_sexo, anim_tamanho
 																	,anim_dieta, anim_veterinario, anim_tratador,anim_batismo));															
 				}
-			
+
 			}
 
 		}catch(int error_code){
@@ -444,10 +444,14 @@ void Loja::adicionarAnimal(){
 		std::cout<<"Digite o ID do veterinário responsável pelo novo animal"<<std::endl;
 		std::cin>>auxId;
 		if(!std::cin){throw 11;}//input léxico em campo numerico
-		anim_veterinario = funcionario_db[auxId];
-		std::cin.ignore();//ignorar o a quebra de linha do cin
 		if(auxId!=0 && funcionario_db.find(auxId) == funcionario_db.end()){throw 7;}//ERRO: Não há funcionário cadastrado com esse id
 		if(auxId!=0 && funcionario_db[auxId]->getTipo_funcionario() != "Veterinario"){throw 8;}//ERRO: O funcionario não é veterinario
+		if(auxId!=0){
+			anim_veterinario = funcionario_db[auxId];
+		}else{
+			anim_veterinario = nullptr;
+		}
+		std::cin.ignore();//ignorar o a quebra de linha do cin
 
 		//ID do tratador
 		std::cout<<"Digite o ID do tratador responsável pelo novo animal"<<std::endl;
