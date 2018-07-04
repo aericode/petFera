@@ -4,6 +4,7 @@
 #include <fstream>
 #include <map>
 #include <iterator>
+#include <ios>
 
 #include "../include/funcionario.h"
 #include "../include/veterinario.h"
@@ -26,67 +27,83 @@ void Loja::carregarFuncionarios(){
 	std::string temp;
 
 	std::ifstream ip("./data/funcionario_db.csv");
-	
-	if(!ip.is_open()){
-		std::cout << "ERRO: arquivo funcionario_db.csv nao foi aberto"<<std::endl;
-	}
+	try{
+		if(!ip.is_open()){throw 1;}// testa se o arquivo foi aberto
 
-	int func_id;
-	std::string tipo_funcionario;
-	std::string func_nome;
-	std::string func_cpf;
-	short int func_idade;
-	std::string func_tipo_sanguineo;
-	char func_fatorRH;
-	std::string func_especialidade;
-	
-	while(ip.good()){
-		//ID
-		getline(ip,temp,';');
-		func_id = std::stoi(temp,&sz);//converte a string temp em int
-
-		//TIPO PARA INICIALIZAÇÃO
-		getline(ip,tipo_funcionario,';');
-
-		//NOME
-		getline(ip,func_nome,';');
-
-		//CPF
-		getline(ip,func_cpf,';');
-
-		//IDADE
-		getline(ip,temp,';');
-		func_idade = (short)std::stoi(temp,&sz);//converte a string temp em int
-
-		//TIPO SANGUINEO
-		getline(ip,func_tipo_sanguineo,';');
-
-		//FATOR RH
-		getline(ip,temp,';');
-		func_fatorRH = *temp.c_str();//converte a string temp em char
-
-		//ESPECIALIDADE
-		getline(ip,func_especialidade,'\n');
+		ip.seekg(0, std::ios::end); //testa se o arquivo está vazio
+		if (ip.tellg() == 0) {throw 2;}
+		ip.seekg(0, std::ios::beg); //volta o ponteiro de get para o inicio do arquivo
 
 
-		//INICIALIZAR O FUNCIONARIO
-		if(tipo_funcionario=="Veterinario"){
-			funcionario_db[func_id] = std::make_shared<Veterinario>(
-														Veterinario	(func_id,tipo_funcionario,func_nome,func_cpf,
-																	func_idade,func_tipo_sanguineo,
-																	func_fatorRH,func_especialidade));
+		int func_id;
+		std::string tipo_funcionario;
+		std::string func_nome;
+		std::string func_cpf;
+		short int func_idade;
+		std::string func_tipo_sanguineo;
+		char func_fatorRH;
+		std::string func_especialidade;
+		
+		while(ip.good()){
+			//ID
+			getline(ip,temp,';');
+			func_id = std::stoi(temp,&sz);//converte a string temp em int
+
+			//TIPO PARA INICIALIZAÇÃO
+			getline(ip,tipo_funcionario,';');
+
+			//NOME
+			getline(ip,func_nome,';');
+
+			//CPF
+			getline(ip,func_cpf,';');
+
+			//IDADE
+			getline(ip,temp,';');
+			func_idade = (short)std::stoi(temp,&sz);//converte a string temp em int
+
+			//TIPO SANGUINEO
+			getline(ip,func_tipo_sanguineo,';');
+
+			//FATOR RH
+			getline(ip,temp,';');
+			func_fatorRH = *temp.c_str();//converte a string temp em char
+
+			//ESPECIALIDADE
+			getline(ip,func_especialidade,'\n');
+
+
+			//INICIALIZAR O FUNCIONARIO
+			if(tipo_funcionario=="Veterinario"){
+				funcionario_db[func_id] = std::make_shared<Veterinario>(
+															Veterinario	(func_id,tipo_funcionario,func_nome,func_cpf,
+																		func_idade,func_tipo_sanguineo,
+																		func_fatorRH,func_especialidade));
+			}
+
+			if(tipo_funcionario=="Tratador"){
+				funcionario_db[func_id] = std::make_shared<Tratador>(
+															Tratador	(func_id,tipo_funcionario,func_nome,func_cpf,
+																		func_idade,func_tipo_sanguineo,
+																		func_fatorRH,func_especialidade));
+			}
 		}
 
-		if(tipo_funcionario=="Tratador"){
-			funcionario_db[func_id] = std::make_shared<Tratador>(
-														Tratador	(func_id,tipo_funcionario,func_nome,func_cpf,
-																	func_idade,func_tipo_sanguineo,
-																	func_fatorRH,func_especialidade));
+	}catch(int error_code){
+		switch(error_code)
+		{
+			case 1:
+				std::cout<<"Arquivo funcionario_db.csv não foi encontrado, inicializando novo registro"<<std::endl;
+				break;
+			case 2:
+				std::cout<<"Registro de animais vazio, inicializando sem animais"<<std::endl;
+				break;
+			default:
+				std::cout<<"Erro de sintaxe"<<std::endl;
 		}
-
-
 	}
 }
+
 
 void Loja::carregarAnimais(){
 	int temp_int;
@@ -95,66 +112,85 @@ void Loja::carregarAnimais(){
 
 	std::ifstream ip("./data/animal_db.csv");
 	
-	if(!ip.is_open()){
-		std::cout << "ERRO: arquivo animal_db.csv nao foi aberto"<<std::endl;
-	}
 
-	int anim_id;
-	std::string anim_classe;
-	std::string anim_nome; //especie do animal
-	std::string anim_cientifico;
-	char anim_sexo;
-	float anim_tamanho;
-	std::string anim_dieta;
-	std::shared_ptr<Funcionario> anim_veterinario;
-	std::shared_ptr<Funcionario> anim_tratador;
-	std::string anim_batismo;
+	try{
+
+		if(!ip.is_open()){throw 1;}
+
+		ip.seekg(0, std::ios::end); //testa se o arquivo está vazio
+		if (ip.tellg() == 0) {throw 2;}
+		ip.seekg(0, std::ios::beg); //volta o ponteiro de get para o inicio do arquivo
+
+		int anim_id;
+		std::string anim_classe;
+		std::string anim_nome; //especie do animal
+		std::string anim_cientifico;
+		char anim_sexo;
+		float anim_tamanho;
+		std::string anim_dieta;
+		std::shared_ptr<Funcionario> anim_veterinario;
+		std::shared_ptr<Funcionario> anim_tratador;
+		std::string anim_batismo;
 	
-	while(ip.good()){
-		//ID
-		getline(ip,temp,';');
-		anim_id = std::stoi(temp,&sz);//converte a string temp em int
+	
+		while(ip.good()){
+			//ID
+			getline(ip,temp,';');
+			anim_id = std::stoi(temp,&sz);//converte a string temp em int
 
-		//CLASSE
-		getline(ip,anim_classe,';');
+			//CLASSE
+			getline(ip,anim_classe,';');
 
-		//NOME (da especie)
-		getline(ip,anim_nome,';');
+			//NOME (da especie)
+			getline(ip,anim_nome,';');
 
-		//NOME CIENTIFICO
-		getline(ip,anim_cientifico,';');	
+			//NOME CIENTIFICO
+			getline(ip,anim_cientifico,';');	
 
-		//SEXO
-		getline(ip,temp,';');
-		anim_sexo = *temp.c_str();//converte a string temp em char
+			//SEXO
+			getline(ip,temp,';');
+			anim_sexo = *temp.c_str();//converte a string temp em char
 
-		//TAMANHO
-		getline(ip,temp,';');
-		anim_tamanho = ::atof(temp.c_str());//converte a string temp em float
+			//TAMANHO
+			getline(ip,temp,';');
+			anim_tamanho = ::atof(temp.c_str());//converte a string temp em float
 
-		//DIETA
-		getline(ip,anim_dieta,';');
+			//DIETA
+			getline(ip,anim_dieta,';');
 
-		//VETERINARIO
-		getline(ip,temp,';');//recebe o numero de registro do funcionario
-		temp_int = std::stoi(temp,&sz);//converte esse numero em int
-		anim_veterinario = funcionario_db[temp_int];
+			//VETERINARIO
+			getline(ip,temp,';');//recebe o numero de registro do funcionario
+			temp_int = std::stoi(temp,&sz);//converte esse numero em int
+			anim_veterinario = funcionario_db[temp_int];
 
-		//TRATADOR
-		getline(ip,temp,';');//recebe o numero de registro do funcionario
-		temp_int = std::stoi(temp,&sz);//converte esse numero em int
-		anim_tratador = funcionario_db[temp_int];
+			//TRATADOR
+			getline(ip,temp,';');//recebe o numero de registro do funcionario
+			temp_int = std::stoi(temp,&sz);//converte esse numero em int
+			anim_tratador = funcionario_db[temp_int];
 
-		//BATISMO
-		getline(ip,anim_batismo,'\n');
-		
-		//INICIALIZA ANIMAL
-		animal_db[anim_id] = std::make_shared<Animal>(
-													  Animal(anim_id, anim_classe, anim_nome
-															,anim_cientifico,anim_sexo, anim_tamanho
-															,anim_dieta, anim_veterinario, anim_tratador,anim_batismo));
-																
+			//BATISMO
+			getline(ip,anim_batismo,'\n');
+			
+			//INICIALIZA ANIMAL
+			animal_db[anim_id] = std::make_shared<Animal>(
+														  Animal(anim_id, anim_classe, anim_nome
+																,anim_cientifico,anim_sexo, anim_tamanho
+																,anim_dieta, anim_veterinario, anim_tratador,anim_batismo));
+																	
+			}
+		}catch(int error_code){
+			switch(error_code){
+				case 1:
+					std::cout<<"Arquivo animal_db.csv não foi encontrado, inicializando novo registro"<<std::endl;
+					break;
+				case 2:
+					std::cout<<"Registro de animais vazio, inicializando sem animais"<<std::endl;
+					break;
+				default:
+					std::cout<<"Erro de sintaxe"<<std::endl;
+			}
 		}
+	
 }
 
 void Loja::exibirFuncionarios(){
