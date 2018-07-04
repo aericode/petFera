@@ -310,6 +310,7 @@ void Loja::adicionarFuncionario(){
 																	func_idade,func_tipo_sanguineo,
 																	func_fatorRH,func_especialidade));
 		}
+		
 	}catch(int error_code){
 		//std::cout<<"ERRO "<<error_code<<std::endl;  //<<' '<<func_id<<std::endl;//usar input como parte da mensagem
 
