@@ -38,6 +38,12 @@ std::string Animal::emiteSave(){
 	std::string dataSave; //string a ser retornada, informações são adicionadas por meio de concatenação (sobrecarga do + na string)
 	std::string separador = ";";//escolhe separador (leitura funciona somente com ; de acordo com o solicitado)
 
+	//int veterinario_id;
+	//int tratador_id;
+
+	//if()//SE É NULL CONVERTE PARA  0
+
+
 
 	dataSave = std::to_string(m_id)                   + separador
 			 + m_classe                               + separador
