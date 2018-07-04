@@ -310,7 +310,7 @@ void Loja::adicionarFuncionario(){
 																	func_idade,func_tipo_sanguineo,
 																	func_fatorRH,func_especialidade));
 		}
-		
+
 	}catch(int error_code){
 		//std::cout<<"ERRO "<<error_code<<std::endl;  //<<' '<<func_id<<std::endl;//usar input como parte da mensagem
 
@@ -495,16 +495,44 @@ void Loja::removerFuncionario(){
 	int func_id;
 	std::cout<<"Qual o id do funcionario que você gostaria de remover do registro? "<<std::endl;
 	std::cin>>func_id;
-	std::cout<<"Removendo "<<funcionario_db[func_id]->getNome()<<std::endl;
-	funcionario_db.erase(func_id);
+	try{
+		if(func_id<=0){throw 1;}
+		if(funcionario_db.find(func_id) == funcionario_db.end()){throw 2;}
+		std::cout<<"Removendo "<<funcionario_db[func_id]->getNome()<<std::endl;
+		funcionario_db.erase(func_id);
+	}catch(int error_code){
+		switch(error_code)
+		{
+			case 1:
+				std::cout << "ID inválido" <<std::endl;
+				break;
+			case 2:
+				std::cout << "o ID "<< func_id <<" não está associado a nenhum funcionário" <<std::endl;
+				break;
+		}
+	}
 }
 
 void Loja::removerAnimal(){
 	int anim_id;
 	std::cout<<"Qual o id do animal que você gostaria de remover do registro? "<<std::endl;
 	std::cin>>anim_id;
-	std::cout<<"Removendo "<<animal_db[anim_id]->getBatismo()<<std::endl;
-	animal_db.erase(anim_id);
+	try{
+		if(anim_id<0){throw 1;}
+		if(animal_db.find(anim_id) == animal_db.end()){throw 2;}
+		std::cout<<"Removendo "<<animal_db[anim_id]->getBatismo()<<std::endl;
+		animal_db.erase(anim_id);
+	}catch(int error_code){
+		switch(error_code)
+		{
+			case 1:
+				std::cout << "ID inválido" <<std::endl;
+				break;
+			case 2:
+				std::cout << "o ID "<< anim_id <<" não está associado a nenhum animal" <<std::endl;
+				break;
+		}
+	}
 }
 
 
