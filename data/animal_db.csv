@@ -1,4 +1,5 @@
-1;Mammalia;Gato;Felis Catus;F;0.890000;Whiskas Sachê;2;3;Gatimon
-2;Mammalia;Cachorro;Canis Familiaris;M;1.400000;Pedigree;2;1;Bob
-5;Mammalia;Jumento;Jumentus Batizadus;M;1.990000;cenoura;2;1;Fred
-7;Mammalia;coelho;coelius felpudus;M;0.070000;cenoura;2;1;peludinho
+1;Mammalia;Gato;Felis Catus;F;0.890000;Whiskas Sachê;3;2;Gatimon
+2;Mammalia;Cachorro;Canis Familiaris;M;1.400000;Pedigree;1;2;Bob
+5;Mammalia;Jumento;Jumentus Batizadus;M;1.990000;cenoura;1;2;Fred
+6;Aves;Canário;Canarius Carinatus;M;0.100000;alpiste;2;1;Pistolinho
+7;Mammalia;coelho;coelius felpudus;M;0.070000;cenoura;1;2;peludinho

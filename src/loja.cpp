@@ -24,7 +24,7 @@
 
 void Loja::carregarFuncionarios(){
 	std::string::size_type sz; // alias do size_t de string
-	std::string temp;
+	std::string temp;// armazena temporariamente as strings pegas do arquivo
 
 	std::ifstream ip("./data/funcionario_db.csv");
 	try{//FALHAS DE ARQUIVO
@@ -249,10 +249,15 @@ void Loja::salvarFuncionarios(){
 void Loja::salvarAnimais(){
 	std::ofstream op;//abreviação para output
 	op.open("./data/animal_db.csv");
-	for(auto it = animal_db.cbegin(); it != animal_db.cend();){//o sistema vai para a prox entrada do map, (next não funcionou para peek do próximo, ++it incrementa, e depois é comparado)
-		std::string saveLine = it->second->emiteSave();//acessa o ponteiro do animal, associado à chave e chama uma string de save
-		if(++it != animal_db.cend()) saveLine = saveLine + '\n';//adiciona um espaço ao final de todas as linhas menos a última.
-    	op << saveLine;
+	try{
+		if(animal_db.size()==0){throw;}
+		for(auto it = animal_db.cbegin(); it != animal_db.cend();){//o sistema vai para a prox entrada do map, (next não funcionou para peek do próximo, ++it incrementa, e depois é comparado)
+			std::string saveLine = it->second->emiteSave();//acessa o ponteiro do animal, associado à chave e chama uma string de save
+			if(++it != animal_db.cend()) saveLine = saveLine + '\n';//adiciona um espaço ao final de todas as linhas menos a última.
+	    	op << saveLine;
+		}
+	}catch(...){
+		std::cout<<"Aviso: registro de animais vazio"<<std::endl;
 	}
 	op.close();
 }
@@ -555,6 +560,7 @@ void Loja::removerFuncionario(){
 		if(funcionario_db.find(func_id) == funcionario_db.end()){throw 2;}
 		std::cout<<"Removendo "<<funcionario_db[func_id]->getNome()<<std::endl;
 		funcionario_db.erase(func_id);
+		funcionario_db[func_id] = nullptr;
 	}catch(int error_code){
 		switch(error_code)
 		{
@@ -577,6 +583,7 @@ void Loja::removerAnimal(){
 		if(animal_db.find(anim_id) == animal_db.end()){throw 2;}
 		std::cout<<"Removendo "<<animal_db[anim_id]->getBatismo()<<std::endl;
 		animal_db.erase(anim_id);
+		animal_db[anim_id] = nullptr;
 	}catch(int error_code){
 		switch(error_code)
 		{

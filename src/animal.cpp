@@ -37,23 +37,32 @@ void Animal::setTratador(std::shared_ptr<Funcionario> tratador){m_tratador = tra
 std::string Animal::emiteSave(){
 	std::string dataSave; //string a ser retornada, informações são adicionadas por meio de concatenação (sobrecarga do + na string)
 	std::string separador = ";";//escolhe separador (leitura funciona somente com ; de acordo com o solicitado)
+	/*
+	std::string veterinario_id;
+	std::string tratador_id;
 
-	//int veterinario_id;
-	//int tratador_id;
+	if(m_veterinario==nullptr){
+		veterinario_id="0";
+	}else{
+		veterinario_id=std::to_string(m_veterinario->getId());
+	}
 
-	//if()//SE É NULL CONVERTE PARA  0
+	if(m_tratador==nullptr){
+		tratador_id="0";
+	}else{
+		tratador_id=std::to_string(m_tratador->getId());
+	}
+	*/
 
-
-
-	dataSave = std::to_string(m_id)                   + separador
-			 + m_classe                               + separador
-			 + m_nome                                 + separador
-			 + m_cientifico                           + separador
-			 + m_sexo                                 + separador
-			 + std::to_string(m_tamanho)              + separador
-			 + m_dieta                                + separador
-			 + std::to_string(m_veterinario->getId()) + separador
-			 + std::to_string(m_tratador->getId())    + separador
+	dataSave = std::to_string(m_id)                  + separador
+			 + m_classe                              + separador
+			 + m_nome                                + separador
+			 + m_cientifico                          + separador
+			 + m_sexo                                + separador
+			 + std::to_string(m_tamanho)             + separador
+			 + m_dieta                               + separador
+			 + std::to_string(m_veterinario->getId())+ separador
+			 + std::to_string(m_tratador->getId())   + separador
 			 + m_batismo;
 
 	return dataSave;
