@@ -10,7 +10,6 @@ BinDir=bin/
 CC=g++
 RM=rm
 
-#!!!!!DO NOT EDIT ANYTHING UNDER THIS LINE!!!!!
 Objects=$(Sources:.cpp=.o)
 CSources=$(addprefix $(SourceDir),$(Sources))
 CObjects=$(addprefix $(ObjectDir),$(Objects))

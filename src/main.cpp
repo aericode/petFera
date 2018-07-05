@@ -20,7 +20,5 @@ int main(){
 
 	Loja loja;
 
-
-
     return 0;
 }

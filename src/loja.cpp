@@ -1,3 +1,13 @@
+/**
+  * @file 		loja.cpp
+  * @brief 		Interface - Administração de dados e contâiners
+  * @details 	Recebe dados via I/O e arquivo, e centraliza o tratamento de Exceções
+  * @author		Eric Andrade
+  * @since		26/07/2018
+  * @date		05/07/2018
+  * @sa 		https://github.com/vloxflox/petFera
+  */
+
 #include <iostream>
 #include <string>
 #include <memory>
@@ -21,18 +31,22 @@
 #include "../include/loja.h"
 
 
-
+/**
+ * Inicializa um map de funcionarios com base em um arquivo previamente salvo
+ * @brief trata exceções caso haja arquivo vazio ou inputs inválidos
+ */
 void Loja::carregarFuncionarios(){
 	std::string::size_type sz; // alias do size_t de string
 	std::string temp;
 
 	std::ifstream ip("./data/funcionario_db.csv");
-	try{//FALHAS DE ARQUIVO
-		if(!ip.is_open()){throw 1;}// testa se o arquivo foi aberto
+	try{//Verifica falhas de arquivo
 
-		ip.seekg(0, std::ios::end); //testa se o arquivo está vazio
+		if(!ip.is_open()){throw 1;}// testa se o arquivo foi aberto (avisando caso tenha incializado novo arquivo)
+
+		ip.seekg(0, std::ios::end); //testa se o arquivo está vazio (Ler uma string vazia atestaria erro de sintaxe)
 		if (ip.tellg() == 0) {throw 2;}
-		ip.seekg(0, std::ios::beg); //volta o ponteiro de get para o inicio do arquivo
+		ip.seekg(0, std::ios::beg); //volta o ponteiro de get para o inicio do arquivo(O ponteiro fica em eof quando não resetado)
 
 
 		int func_id;
@@ -111,6 +125,10 @@ void Loja::carregarFuncionarios(){
 }
 
 
+/**
+ * Inicializa um map de animais com base em um arquivo previamente salvo
+ * @brief trata exceções caso haja arquivo vazio ou inputs inválidos, sendo seu maior diferencial a busca no map para funcionários
+ */
 void Loja::carregarAnimais(){
 	int temp_int;
 	std::string temp;
@@ -121,11 +139,11 @@ void Loja::carregarAnimais(){
 
 	try{
 
-		if(!ip.is_open()){throw 1;}
+		if(!ip.is_open()){throw 1;}// testa se o arquivo foi aberto (avisando caso tenha incializado novo arquivo)
 
-		ip.seekg(0, std::ios::end); //testa se o arquivo está vazio
+		ip.seekg(0, std::ios::end); //testa se o arquivo está vazio (Ler strings vazias atestaria erro de sintaxe)
 		if (ip.tellg() == 0) {throw 2;}
-		ip.seekg(0, std::ios::beg); //volta o ponteiro de get para o inicio do arquivo
+		ip.seekg(0, std::ios::beg); //volta o ponteiro de get para o inicio do arquivo (eof caso não seja resetado)
 
 		int anim_id;
 		std::string anim_classe;
