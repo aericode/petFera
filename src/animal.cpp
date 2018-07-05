@@ -1,3 +1,12 @@
+/**
+  * @file 		animal.cpp
+  * @brief 		Getter-setters e emissor de strings para armazenamento (Loja::salvarFuncionarios())classe mãe de: Anfibio, Mamifero, Ave e Reptil
+  * @details 	Sobrecarga do operador de impressão e salvar, além dos elementos padrão. Construtor nas subclasses.
+  * @author		Eric Andrade
+  * @since		26/07/2018
+  * @date		05/07/2018
+  * @sa 		https://github.com/vloxflox/petFera
+  */
 #include <iostream>
 #include <fstream>
 #include <string> 
@@ -34,6 +43,12 @@ void Animal::setVeterinario(std::shared_ptr<Funcionario> veterinario){m_veterina
 std::shared_ptr<Funcionario> Animal::getTratador(){return m_tratador;}
 void Animal::setTratador(std::shared_ptr<Funcionario> tratador){m_tratador = tratador;}
 
+
+/**
+ * Gera uma string que pode ser lida pelo carregador do petFera
+ * @brief por meio de sucetivas concatenações e conversões ao formato de string, gera um texto válido para leitura na próxima inicialização 
+ * @return uma string válida para leitura por (Loja::carregaFuncionarios()) na próxima inicialização
+ */
 std::string Animal::emiteSave(){
 	std::string dataSave; //string a ser retornada, informações são adicionadas por meio de concatenação (sobrecarga do + na string)
 	std::string separador = ";";//escolhe separador (leitura funciona somente com ; de acordo com o solicitado)
@@ -46,14 +61,17 @@ std::string Animal::emiteSave(){
 			 + m_sexo                                 + separador
 			 + std::to_string(m_tamanho)              + separador
 			 + m_dieta                                + separador
-			 + std::to_string(m_veterinario->getId()) + separador
-			 + std::to_string(m_tratador->getId())    + separador
+			 + std::to_string(m_veterinario->getId()) + separador//pega o ponteiro que armazena o funcionário e retorna o ID associado a ele para armazenar
+			 + std::to_string(m_tratador->getId())    + separador//pega o ponteiro que armazena o funcionário e retorna o ID associado a ele para armazenar
 			 + m_batismo;
 
 	return dataSave;
 }
 
-
+/**
+ * Mostra na tela informações do funcionário
+ * @brief consulta-se o ponteiro para retornar o nome do funcionário
+ */
 std::ostream& operator<<(std::ostream& os, const Animal& animal){
 	os<<"ID: "<< animal.m_id << std::endl
 	  <<"Classe: "<< animal.m_classe << std::endl

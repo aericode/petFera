@@ -1,3 +1,12 @@
+/**
+  * @file 		tratador.cpp
+  * @brief 		construtor
+  * @details 	especificidades da classe tratador (no momento, nenhuma)
+  * @author		Eric Andrade
+  * @since		26/07/2018
+  * @date		05/07/2018
+  * @sa 		https://github.com/vloxflox/petFera
+  */
 #include "../include/funcionario.h"
 #include "../include/tratador.h"
 #include <iostream>

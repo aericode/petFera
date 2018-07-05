@@ -1,3 +1,12 @@
+/**
+  * @file 		funcionario.cpp
+  * @brief 		Getter-setters e emissor de strings para armazenamento (Loja::salvarFuncionarios())
+  * @details 	Sobrecarga do operador de impressão e salvar. Além dos elementos padrão. Construtor nas subclasses.
+  * @author		Eric Andrade
+  * @since		26/07/2018
+  * @date		05/07/2018
+  * @sa 		https://github.com/vloxflox/petFera
+  */
 #include <iostream>
 #include <fstream>
 #include <string> 
@@ -25,6 +34,12 @@ void Funcionario::setEspecialidade(std::string especialidade){m_especialidade = 
 std::string Funcionario::getTipo_funcionario(){return m_tipo_funcionario;}
 void Funcionario::setTipo_funcionario(std::string tipo_funcionario){m_tipo_funcionario = tipo_funcionario;}
 
+
+/**
+ * Gera uma string que pode ser lida pelo carregador do petFera
+ * @brief por meio de sucetivas concatenações e conversões ao formato de string, gera um texto válido para leitura na próxima inicialização 
+ * @return uma string válida para leitura por (Loja::carregaFuncionarios()) na próxima inicialização
+ */
 std::string Funcionario::emiteSave(){ //transformar em função com template
 	std::string dataSave;
 	std::string separador = ";";
@@ -42,6 +57,10 @@ std::string Funcionario::emiteSave(){ //transformar em função com template
 	return dataSave;
 }
 
+
+/**
+ * Mostra na tela informações do funcionário
+ */
 std::ostream& operator<<(std::ostream& os, const Funcionario& funcionario){
 	os<<"ID: "<< funcionario.m_id << std::endl
 	  <<"Nome: "<< funcionario.m_nome << std::endl

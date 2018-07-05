@@ -1,3 +1,12 @@
+/**
+  * @file 		ave.cpp
+  * @brief 		construtor, e getters-setters específicos
+  * @details 	estabelece funções diferenciadas da subclasse ave
+  * @author		Eric Andrade
+  * @since		26/07/2018
+  * @date		05/07/2018
+  * @sa 		https://github.com/vloxflox/petFera
+  */
 #include "../include/ave.h"
 #include <string>
 
