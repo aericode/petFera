@@ -63,7 +63,7 @@ void Loja::carregarFuncionarios(){
 			while(ip.good()){
 				//ID
 				getline(ip,temp,';');
-				func_id_error = temp;
+				func_id_error = temp;//carrega uma string preventiva para apontar o local do erro
 				func_id = std::stoi(temp,&sz);//converte a string temp em int
 
 				//TIPO PARA INICIALIZAÇÃO
@@ -91,6 +91,7 @@ void Loja::carregarFuncionarios(){
 
 
 				//INICIALIZAR O FUNCIONARIO
+					//utiliza o segundo dado para informar qual o tipo de objeto a ser inicializado
 				if(tipo_funcionario=="Veterinario"){
 					funcionario_db[func_id] = std::make_shared<Veterinario>(
 																Veterinario	(func_id,tipo_funcionario,func_nome,func_cpf,
@@ -146,6 +147,7 @@ void Loja::carregarAnimais(){
 		ip.seekg(0, std::ios::beg); //volta o ponteiro de get para o inicio do arquivo (eof caso não seja resetado)
 
 		int anim_id;
+		std::string anim_id_error;
 		std::string anim_classe;
 		std::string anim_nome; //especie do animal
 		std::string anim_cientifico;
@@ -156,74 +158,79 @@ void Loja::carregarAnimais(){
 		std::shared_ptr<Funcionario> anim_tratador;
 		std::string anim_batismo;
 	
-	
-		while(ip.good()){
-				//ID
-				getline(ip,temp,';');
-				anim_id = std::stoi(temp,&sz);//converte a string temp em int
+		try{//FALHAS DE SINTAXE
+			while(ip.good()){
+					//ID
+					getline(ip,temp,';');
+					anim_id_error = temp;//carrega uma string preventiva para apontar o local do erro
+					anim_id = std::stoi(temp,&sz);//converte a string temp em int
 
-				//CLASSE
-				getline(ip,anim_classe,';');
+					//CLASSE
+					getline(ip,anim_classe,';');
 
-				//NOME (da especie)
-				getline(ip,anim_nome,';');
+					//NOME (da especie)
+					getline(ip,anim_nome,';');
 
-				//NOME CIENTIFICO
-				getline(ip,anim_cientifico,';');	
+					//NOME CIENTIFICO
+					getline(ip,anim_cientifico,';');	
 
-				//SEXO
-				getline(ip,temp,';');
-				anim_sexo = *temp.c_str();//converte a string temp em char
+					//SEXO
+					getline(ip,temp,';');
+					anim_sexo = *temp.c_str();//converte a string temp em char
 
-				//TAMANHO
-				getline(ip,temp,';');
-				anim_tamanho = ::atof(temp.c_str());//converte a string temp em float
+					//TAMANHO
+					getline(ip,temp,';');
+					anim_tamanho = ::atof(temp.c_str());//converte a string temp em float
 
-				//DIETA
-				getline(ip,anim_dieta,';');
+					//DIETA
+					getline(ip,anim_dieta,';');
 
-				//VETERINARIO
-				getline(ip,temp,';');//recebe o numero de registro do funcionario
-				temp_int = std::stoi(temp,&sz);//converte esse numero em int
-				anim_veterinario = funcionario_db[temp_int];
+					//VETERINARIO
+					getline(ip,temp,';');//recebe o numero de registro do funcionario
+					temp_int = std::stoi(temp,&sz);//converte esse numero em int
+					anim_veterinario = funcionario_db[temp_int];
 
-				//TRATADOR
-				getline(ip,temp,';');//recebe o numero de registro do funcionario
-				temp_int = std::stoi(temp,&sz);//converte esse numero em int
-				anim_tratador = funcionario_db[temp_int];
+					//TRATADOR
+					getline(ip,temp,';');//recebe o numero de registro do funcionario
+					temp_int = std::stoi(temp,&sz);//converte esse numero em int
+					anim_tratador = funcionario_db[temp_int];
 
-				//BATISMO
-				getline(ip,anim_batismo,'\n');
-				
-				//INICIALIZA ANIMAL
-				if(anim_classe=="Mammalia"){
-					animal_db[anim_id] = std::make_shared<Mamifero>(
-															Mamifero(anim_id, anim_classe, anim_nome
-																	,anim_cientifico,anim_sexo, anim_tamanho
-																	,anim_dieta, anim_veterinario, anim_tratador,anim_batismo));
+					//BATISMO
+					getline(ip,anim_batismo,'\n');
+					
+					//INICIALIZA ANIMAL
+						//utiliza o segundo dado para informar qual o tipo de objeto a ser inicializado
+					if(anim_classe=="Mammalia"){
+						animal_db[anim_id] = std::make_shared<Mamifero>(
+																Mamifero(anim_id, anim_classe, anim_nome
+																		,anim_cientifico,anim_sexo, anim_tamanho
+																		,anim_dieta, anim_veterinario, anim_tratador,anim_batismo));
+					}
+
+					if(anim_classe=="Reptilia"){
+						animal_db[anim_id] = std::make_shared<Reptil>(
+																Reptil  (anim_id, anim_classe, anim_nome
+																		,anim_cientifico,anim_sexo, anim_tamanho
+																		,anim_dieta, anim_veterinario, anim_tratador,anim_batismo));
+					}
+
+					if(anim_classe=="Amphibia"){
+						animal_db[anim_id] = std::make_shared<Anfibio>(
+																Anfibio (anim_id, anim_classe, anim_nome
+																		,anim_cientifico,anim_sexo, anim_tamanho
+																		,anim_dieta, anim_veterinario, anim_tratador,anim_batismo));
+					}
+
+					if(anim_classe=="Aves"){
+						animal_db[anim_id] = std::make_shared<Ave>(
+																Ave     (anim_id, anim_classe, anim_nome
+																		,anim_cientifico,anim_sexo, anim_tamanho
+																		,anim_dieta, anim_veterinario, anim_tratador,anim_batismo));															
+					}
 				}
+			}catch(...){
+				std::cout<<"Erro de sintaxe, o registro de animal ID: "<< anim_id_error <<" provocou falha no carregamento"<<std::endl;
 
-				if(anim_classe=="Reptilia"){
-					animal_db[anim_id] = std::make_shared<Reptil>(
-															Reptil  (anim_id, anim_classe, anim_nome
-																	,anim_cientifico,anim_sexo, anim_tamanho
-																	,anim_dieta, anim_veterinario, anim_tratador,anim_batismo));
-				}
-
-				if(anim_classe=="Amphibia"){
-					animal_db[anim_id] = std::make_shared<Anfibio>(
-															Anfibio (anim_id, anim_classe, anim_nome
-																	,anim_cientifico,anim_sexo, anim_tamanho
-																	,anim_dieta, anim_veterinario, anim_tratador,anim_batismo));
-				}
-
-				if(anim_classe=="Aves"){
-					animal_db[anim_id] = std::make_shared<Ave>(
-															Ave     (anim_id, anim_classe, anim_nome
-																	,anim_cientifico,anim_sexo, anim_tamanho
-																	,anim_dieta, anim_veterinario, anim_tratador,anim_batismo));															
-				}
-			
 			}
 
 		}catch(int error_code){
@@ -241,18 +248,27 @@ void Loja::carregarAnimais(){
 	
 }
 
+/**
+ * Percorre o map contendo os funcionários utilizando a sobrecarga de operador para exibir dados a respeito dele
+ */
 void Loja::exibirFuncionarios(){
 	for(auto it = funcionario_db.cbegin(); it != funcionario_db.cend(); ++it){
     	std::cout << *(it->second) << std::endl;
 	}
 }
 
+/**
+ * Percorre o map contendo os animais utilizando a sobrecarga de operador para exibir dados a respeito dele
+ */
 void Loja::exibirAnimais(){
 	for(auto it = animal_db.cbegin(); it != animal_db.cend(); ++it){
     	std::cout << *(it->second) << std::endl;
 	}
 }
-
+/**
+ * Salva a unidade contida em um arquivo
+ * @Brief O programa percorre o map, solicitando a cada integrante do mesmo que emita uma string, chamada por uma função presente nos membros. A string contém dados do membro, e é usada para manter as informações após fechar o programa
+ */
 void Loja::salvarFuncionarios(){
 	std::ofstream op;//abreviação para output
 	op.open("./data/funcionario_db.csv");
@@ -263,7 +279,10 @@ void Loja::salvarFuncionarios(){
 	}
 	op.close();
 }
-
+/**
+ * Salva a unidade contida em um arquivo
+ * @Brief O programa percorre o map, solicitando a cada integrante do mesmo que emita uma string, chamada por uma função presente nos membros. A string contém dados do membro, e é usada para manter as informações após fechar o programa
+ */
 void Loja::salvarAnimais(){
 	std::ofstream op;//abreviação para output
 	op.open("./data/animal_db.csv");
@@ -275,7 +294,10 @@ void Loja::salvarAnimais(){
 	op.close();
 }
 
-
+/**
+ * Solicita dados ao usuário e adiciona um novo integrante ao sistema com base nos dados digitados
+ * @Brief Verifica se há alguma incongruência ou erro de sintaxe antes de inicializar o novo membro
+ */
 void Loja::adicionarFuncionario(){
 	int func_id;
 	std::string tipo_funcionario;
@@ -397,7 +419,10 @@ void Loja::adicionarFuncionario(){
 
 }
 
-
+/**
+ * Solicita dados ao usuário e adiciona um novo integrante ao sistema com base nos dados digitados
+ * @Brief Verifica se há alguma incongruência ou erro de sintaxe antes de inicializar o novo membro
+ */
 void Loja::adicionarAnimal(){
 	int auxId;//o usuario digita e o programa busca no map o ponteiro correspondente
 
@@ -512,7 +537,7 @@ void Loja::adicionarAnimal(){
 															,anim_dieta, anim_veterinario, anim_tratador,anim_batismo));
 		}
 
-	}catch(int error_code){
+	}catch(int error_code){//lista de códigos de erro
 
 		std::cout << "ERRO: ";
 		switch(error_code)
@@ -562,15 +587,20 @@ void Loja::adicionarAnimal(){
 
 }
 
+
+/**
+ * Pede ao usuário um ID e remove o membro com aquele ID
+ * @Brief Verifica se há funcionário com o id antes de remover, e a validade do input
+ */
 void Loja::removerFuncionario(){
 	int func_id;
 	std::cout<<"Qual o id do funcionario que você gostaria de remover do registro? "<<std::endl;
-	std::cin>>func_id;
+	std::cin>>func_id;//valor a ser consultado
 	try{
-		if(func_id<=0){throw 1;}
-		if(funcionario_db.find(func_id) == funcionario_db.end()){throw 2;}
-		std::cout<<"Removendo "<<funcionario_db[func_id]->getNome()<<std::endl;
-		funcionario_db.erase(func_id);
+		if(func_id<=0){throw 1;}//verifica se o numero digitado é válido
+		if(funcionario_db.find(func_id) == funcionario_db.end()){throw 2;}//verifica se há um funcionario com aquele id
+		std::cout<<"Removendo "<<funcionario_db[func_id]->getNome()<<std::endl;//avisa o nome do funcionario
+		funcionario_db.erase(func_id);//remove o funcionário do map
 	}catch(int error_code){
 		switch(error_code)
 		{
@@ -583,11 +613,16 @@ void Loja::removerFuncionario(){
 		}
 	}
 }
-//
+
+
+/**
+ * Pede ao usuário um ID e remove o membro com aquele ID
+ * @Brief Verifica se há animal com o id antes de remover, e a validade do input
+ */
 void Loja::removerAnimal(){
 	int anim_id;
 	std::cout<<"Qual o id do animal que você gostaria de remover do registro? "<<std::endl;
-	std::cin>>anim_id;
+	std::cin>>anim_id;//valor a ser consultado
 	try{
 		if(anim_id<0){throw 1;}
 		if(animal_db.find(anim_id) == animal_db.end()){throw 2;}
@@ -607,9 +642,13 @@ void Loja::removerAnimal(){
 }
 
 
+/**
+ * Pede ao usuário um ID e mostra na tela o membro com aquele ID usando a sobrecarga de operador
+ * @Brief Verifica se há funcionario com o id antes de remover, e a validade do input
+ */
 void Loja::func_imprimePorId(){
 	std::cout << "Digite o ID do funcionario que deseja consultar" <<std::endl;
-	int func_id;
+	int func_id;//valor a ser consultado
 	std::cin>>func_id;
 	try{
 		if(!std::cin){throw 1;}
@@ -633,10 +672,13 @@ void Loja::func_imprimePorId(){
 	}
 }
 
-
+/**
+ * Pede ao usuário um ID e mostra na tela o membro com aquele ID usando a sobrecarga de operador
+ * @Brief Verifica se há animal com o id antes de remover, e a validade do input
+ */
 void Loja::anim_imprimePorId(){
 	std::cout << "Digite o ID do animal que deseja consultar" <<std::endl;
-	int anim_id;
+	int anim_id;//valor a ser consultado
 	std::cin>>anim_id;
 	try{
 		if(!std::cin){throw 1;}
@@ -660,10 +702,13 @@ void Loja::anim_imprimePorId(){
 	}
 }
 
-
+/**
+ * Via de interação com o usuário. Por meio desse console o usuário chama funções e realiza inputs
+ * @Brief Faz uma sequência de testes de inputs e limpeza de CIN para evitar crashes, quando estes ocorrem ele mostra uma mensagem e fecha o programa
+ */
 void Loja::interface(){
 	int opcao;
-	bool sair = false;
+	bool sair = false;//comando para encerrar o loop no qua está o programa
 
 
 	while(!sair){
@@ -714,19 +759,33 @@ void Loja::interface(){
 					break;
 			}
 		}catch(int error_code){
-			sair = true;			
+			switch(error_code){
+				case 1:
+					std::cin.clear();
+					std::cin.ignore();
+					std::cout<<"Digite um número válido"<<std::endl;
+					break;
+				case 2:
+					std::cout<<"Este código não está associado a nenhuma operação"<<std::endl;
+					break;
+				default:
+				std::cin.clear();
+				std::cin.ignore();
+				sair = true;//impede que loops fora do escopo desse tratamento travem o programa
+				std::cout<<"Erro Fatal: Encerrando programa"<<std::endl;
+			}
 		}
 	}
 
 }
 
-
+//Carrega os bancos de dados e interface ao inicializar
 Loja::Loja(){
 	Loja::carregarFuncionarios();
 	Loja::carregarAnimais();
 	Loja::interface();
 }
-
+//Salva o estado atual ao sair
 Loja::~Loja(){
 	Loja::salvarFuncionarios();
 	Loja::salvarAnimais();

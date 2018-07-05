@@ -20,4 +20,4 @@ Ave::Ave        (int anim_id, std::string anim_classe, std::string anim_nome
 																				m_veterinario = anim_veterinario;
 																				m_tratador = anim_tratador;
 																				m_batismo = anim_batismo;}
-Ave::~Ave(){};
+Ave::~Ave(){}
