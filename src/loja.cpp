@@ -444,19 +444,19 @@ void Loja::adicionarAnimal(){
 		std::cout<<"Digite o ID do veterinário responsável pelo novo animal"<<std::endl;
 		std::cin>>auxId;
 		if(!std::cin){throw 11;}//input léxico em campo numerico
-		anim_veterinario = funcionario_db[auxId];
-		std::cin.ignore();//ignorar o a quebra de linha do cin
 		if(auxId!=0 && funcionario_db.find(auxId) == funcionario_db.end()){throw 7;}//ERRO: Não há funcionário cadastrado com esse id
 		if(auxId!=0 && funcionario_db[auxId]->getTipo_funcionario() != "Veterinario"){throw 8;}//ERRO: O funcionario não é veterinario
+		anim_veterinario = funcionario_db[auxId];
+		std::cin.ignore();//ignorar o a quebra de linha do cin
 
 		//ID do tratador
 		std::cout<<"Digite o ID do tratador responsável pelo novo animal"<<std::endl;
 		std::cin>>auxId;
 		if(!std::cin){throw 11;}//input léxico em campo numerico
-		anim_tratador = funcionario_db[auxId];
-		std::cin.ignore();//ignorar o a quebra de linha do cin
 		if(auxId!=0 && funcionario_db.find(auxId) == funcionario_db.end()){throw 7;}//ERRO: Não há funcionário cadastrado com esse id
 		if(auxId!=0 && funcionario_db[auxId]->getTipo_funcionario() != "Tratador"){throw 9;}//ERRO: O funcionario não é tratador
+		anim_tratador = funcionario_db[auxId];
+		std::cin.ignore();//ignorar o a quebra de linha do cin
 		
 		//Nome de batismo do animal
 		std::cout<<"Digite o nome de batismo do novo animal"<<std::endl;
@@ -513,6 +513,7 @@ void Loja::adicionarAnimal(){
 				break;
 			case 5:
 				std::cout << "insira um caractere válido para registrar o sexo do animal (M , F)"<<std::endl;
+				std::cin.clear();
 				break;
 			case 6:
 				std::cout << "informar a dieta do animal é obrigatória para o cadastro"<<std::endl;
@@ -531,6 +532,7 @@ void Loja::adicionarAnimal(){
 				break;
 			case 11:
 				std::cout << "insira um número válido para prosseguir com o cadastro"<<std::endl;
+				std::cin.clear();
 				break;
 			case 12:
 				std::cout << "O cadastro só trabalha com numeros positivos"<<std::endl;
@@ -693,10 +695,8 @@ void Loja::interface(){
 					sair = true;
 					break;
 			}
-		}catch(...){
-			sair = true;
-
-			
+		}catch(int error_code){
+			sair = true;			
 		}
 	}
 
