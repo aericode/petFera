@@ -53,6 +53,11 @@ std::string Animal::emiteSave(){
 	std::string dataSave; //string a ser retornada, informações são adicionadas por meio de concatenação (sobrecarga do + na string)
 	std::string separador = ";";//escolhe separador (leitura funciona somente com ; de acordo com o solicitado)
 
+	std::string veterinario_save;
+	std::string tratador_save;
+
+	m_veterinario == nullptr ? veterinario_save = "0" : veterinario_save = m_veterinario->getId();
+	m_tratador    == nullptr ? tratador_save    = "0" : tratador_save    = m_tratador->getId();
 
 	dataSave = std::to_string(m_id)                   + separador
 			 + m_classe                               + separador
@@ -61,8 +66,8 @@ std::string Animal::emiteSave(){
 			 + m_sexo                                 + separador
 			 + std::to_string(m_tamanho)              + separador
 			 + m_dieta                                + separador
-			 + std::to_string(m_veterinario->getId()) + separador//pega o ponteiro que armazena o funcionário e retorna o ID associado a ele para armazenar
-			 + std::to_string(m_tratador->getId())    + separador//pega o ponteiro que armazena o funcionário e retorna o ID associado a ele para armazenar
+			 + veterinario_save                       + separador//pega o ponteiro que armazena o funcionário e retorna o ID associado a ele para armazenar
+			 + tratador_save                          + separador//pega o ponteiro que armazena o funcionário e retorna o ID associado a ele para armazenar
 			 + m_batismo;
 
 	return dataSave;
@@ -73,16 +78,24 @@ std::string Animal::emiteSave(){
  * @brief consulta-se o ponteiro para retornar o nome do funcionário
  */
 std::ostream& operator<<(std::ostream& os, const Animal& animal){
-	os<<"ID: "<< animal.m_id << std::endl
-	  <<"Classe: "<< animal.m_classe << std::endl
-	  <<"Espécie: "<< animal.m_nome << std::endl
+	
+	os<<"ID: "             << animal.m_id << std::endl
+	  <<"Classe: "         << animal.m_classe << std::endl
+	  <<"Espécie: "        << animal.m_nome << std::endl
 	  <<"Nome cientifico: "<< animal.m_cientifico << std::endl
-	  <<"Sexo: "<< animal.m_sexo << std::endl
-	  <<"Tamanho: "<< animal.m_tamanho << std::endl
-	  <<"Dieta: "<< animal.m_dieta << std::endl
-	  <<"Veterinario: "<< animal.m_veterinario->getNome() << std::endl
-	  <<"Tratador: "<< animal.m_tratador->getNome() << std::endl
-	  <<"Nome de batismo: "<< animal.m_batismo << std::endl;
+	  <<"Sexo: "           << animal.m_sexo << std::endl
+	  <<"Tamanho: "        << animal.m_tamanho << std::endl
+	  <<"Dieta: "          << animal.m_dieta << std::endl;
+
+	os<<"Veterinario: ";//Seção especial de tratamento para os nullptr representando a ausência de um funcionario
+	  animal.m_veterinario == nullptr ? os << "Não definido" : os << animal.m_veterinario->getNome();
+	os<< std::endl; 
+
+	os<<"Tratador: ";
+	  animal.m_tratador    == nullptr ? os << "Não definido" : os << animal.m_tratador->getNome();
+	os<< std::endl;
+
+	os<<"Nome de batismo: "<< animal.m_batismo << std::endl;
 
 	return os;
 }

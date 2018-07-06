@@ -587,6 +587,27 @@ void Loja::adicionarAnimal(){
 
 }
 
+/**
+ * Função auxiliar à removeFuncionario
+ * @Brief desvincula animais do tratador a ser removidos para evitar erros
+ * @Param ID do veterinario a ser removido
+ */
+void Loja::desvincularFuncionario(int func_id_remover){
+	if(funcionario_db[func_id_remover]->getTipo_funcionario()=="Veterinario"){//como o tipo de funcionario é mutuamente excludente só se verifica um campo de todos os animais, funcionario ou tratador
+		for(auto it = animal_db.cbegin(); it != animal_db.cend(); ++it){  //1. percorre o map que armazena os animais 
+	    	if(it->second->getVeterinario()->getId() == func_id_remover){ //2. o valor second das células de animal_db armazena ponteiros para
+	    		it->second->setVeterinario(nullptr);                        //animais, é solicitado um ponteiro ao seu tratador, e então o id
+	    				                                                  //a esse ponteiro para ver se está sendo removido (e seta nullptr no animal)
+	    	}                                                             //3. encerra o processo caso encontre o funcionario no primeiro campo	                                                          
+		}
+	}else if(funcionario_db[func_id_remover]->getTipo_funcionario()=="Tratador"){
+		for(auto it = animal_db.cbegin(); it != animal_db.cend(); ++it){
+	    	if(it->second->getTratador()->getId() == func_id_remover){    
+	    		it->second->setTratador(nullptr);				 		      
+	    	}	                                                          
+		}
+	}
+}
 
 /**
  * Pede ao usuário um ID e remove o membro com aquele ID
@@ -600,6 +621,7 @@ void Loja::removerFuncionario(){
 		if(func_id<=0){throw 1;}//verifica se o numero digitado é válido
 		if(funcionario_db.find(func_id) == funcionario_db.end()){throw 2;}//verifica se há um funcionario com aquele id
 		std::cout<<"Removendo "<<funcionario_db[func_id]->getNome()<<std::endl;//avisa o nome do funcionario
+		desvincularFuncionario(func_id);//desvincula os animais do tratador a ser removido 
 		funcionario_db.erase(func_id);//remove o funcionário do map
 	}catch(int error_code){
 		switch(error_code)

@@ -41,6 +41,7 @@ public:
 	void removerFuncionario();
 	void removerAnimal();
 
+	void desvincularFuncionario(int);
 	void interface();
 };
 
