@@ -252,8 +252,13 @@ void Loja::carregarAnimais(){
  * Percorre o map contendo os funcionários utilizando a sobrecarga de operador para exibir dados a respeito dele
  */
 void Loja::exibirFuncionarios(){
-	for(auto it = funcionario_db.cbegin(); it != funcionario_db.cend(); ++it){
-    	std::cout << *(it->second) << std::endl;
+	try{
+		if(funcionario_db.empty()==true)throw;
+		for(auto it = funcionario_db.cbegin(); it != funcionario_db.cend(); ++it){
+	    	std::cout << *(it->second) << std::endl;
+		}
+	}catch(...){
+		std::cout<<" não há funcionários cadastrados no sistema" << std::endl;
 	}
 }
 
@@ -261,6 +266,10 @@ void Loja::exibirFuncionarios(){
  * Percorre o map contendo os animais utilizando a sobrecarga de operador para exibir dados a respeito dele
  */
 void Loja::exibirAnimais(){
+	if(animal_db.empty()==true){
+		std::cout<<"Nenhum animal cadastrado"<<std::endl;
+		return;//evita erros de leitura
+	}
 	for(auto it = animal_db.cbegin(); it != animal_db.cend(); ++it){
     	std::cout << *(it->second) << std::endl;
 	}
@@ -272,10 +281,15 @@ void Loja::exibirAnimais(){
 void Loja::salvarFuncionarios(){
 	std::ofstream op;//abreviação para output
 	op.open("./data/funcionario_db.csv");
-	for(auto it = funcionario_db.cbegin(); it != funcionario_db.cend();){//o sistema vai para a prox entrada do map, (next não funcionou para peek do próximo, ++it incrementa, e depois é comparado)
-		std::string saveLine = it->second->emiteSave();//acessa o ponteiro do animal, associado à chave e chama uma string de save
-		if(++it != funcionario_db.cend()) saveLine = saveLine + '\n';//não pode dar quebra de linha na última linha (um funcionario por linha)
-    	op << saveLine;
+	try{
+		if(funcionario_db.empty()==true)throw;
+		for(auto it = funcionario_db.cbegin(); it != funcionario_db.cend();){//o sistema vai para a prox entrada do map, (next não funcionou para peek do próximo, ++it incrementa, e depois é comparado)
+			std::string saveLine = it->second->emiteSave();//acessa o ponteiro do animal, associado à chave e chama uma string de save
+			if(++it != funcionario_db.cend()) saveLine = saveLine + '\n';//não pode dar quebra de linha na última linha (um funcionario por linha)
+	    	op << saveLine;
+		}
+	}catch(...){
+		std::cout<<"Aviso: sem funcionários cadastrados no sistema" << std::endl;
 	}
 	op.close();
 }
@@ -286,10 +300,15 @@ void Loja::salvarFuncionarios(){
 void Loja::salvarAnimais(){
 	std::ofstream op;//abreviação para output
 	op.open("./data/animal_db.csv");
-	for(auto it = animal_db.cbegin(); it != animal_db.cend();){//o sistema vai para a prox entrada do map, (next não funcionou para peek do próximo, ++it incrementa, e depois é comparado)
-		std::string saveLine = it->second->emiteSave();//acessa o ponteiro do animal, associado à chave e chama uma string de save
-		if(++it != animal_db.cend()) saveLine = saveLine + '\n';//adiciona um espaço ao final de todas as linhas menos a última.
-    	op << saveLine;
+	try{
+		if(animal_db.empty()==true)throw;
+		for(auto it = animal_db.cbegin(); it != animal_db.cend();){//o sistema vai para a prox entrada do map, (next não funcionou para peek do próximo, ++it incrementa, e depois é comparado)
+			std::string saveLine = it->second->emiteSave();//acessa o ponteiro do animal, associado à chave e chama uma string de save
+			if(++it != animal_db.cend()) saveLine = saveLine + '\n';//adiciona um espaço ao final de todas as linhas menos a última.
+	    	op << saveLine;
+		}
+	}catch(...){
+		std::cout<<"Aviso: sem animais cadastrados no sistema" << std::endl;
 	}
 	op.close();
 }
@@ -489,7 +508,7 @@ void Loja::adicionarAnimal(){
 		if(!std::cin){throw 11;}//input léxico em campo numerico
 		if(auxId!=0 && funcionario_db.find(auxId) == funcionario_db.end()){throw 7;}//ERRO: Não há funcionário cadastrado com esse id
 		if(auxId!=0 && funcionario_db[auxId]->getTipo_funcionario() != "Veterinario"){throw 8;}//ERRO: O funcionario não é veterinario
-		anim_veterinario = funcionario_db[auxId];
+		  (auxId==0) ? anim_veterinario = nullptr : anim_veterinario = funcionario_db[auxId];//0 indica q n há funcionario cuidando daquele animal
 		std::cin.ignore();//ignorar o a quebra de linha do cin
 
 		//ID do tratador
@@ -498,6 +517,7 @@ void Loja::adicionarAnimal(){
 		if(!std::cin){throw 11;}//input léxico em campo numerico
 		if(auxId!=0 && funcionario_db.find(auxId) == funcionario_db.end()){throw 7;}//ERRO: Não há funcionário cadastrado com esse id
 		if(auxId!=0 && funcionario_db[auxId]->getTipo_funcionario() != "Tratador"){throw 9;}//ERRO: O funcionario não é tratador
+		  (auxId==0) ? anim_veterinario = nullptr : anim_veterinario = funcionario_db[auxId];//0 indica q n há funcionario cuidando daquele animal
 		anim_tratador = funcionario_db[auxId];
 		std::cin.ignore();//ignorar o a quebra de linha do cin
 		
@@ -734,6 +754,7 @@ void Loja::interface(){
 
 
 	while(!sair){
+		std::cout<<funcionario_db.size()<<std::endl;
 		std::cout   <<"1. Ver as informações de um animal (por ID)"<<std::endl
 					<<"2. Ver as informações de um funcionário (por ID)"<<std::endl
 					<<"3. Cadastrar um animal"<<std::endl
@@ -771,10 +792,10 @@ void Loja::interface(){
 					Loja::removerFuncionario();
 					break;
 				case 7:
-					Loja::exibirAnimais();
+					animal_db.empty() == true ? throw 3 : Loja::exibirAnimais();
 					break;
 				case 8:
-					Loja::exibirFuncionarios();
+					funcionario_db.empty() == true ? throw 4 : Loja::exibirFuncionarios();
 					break;
 				case 9:
 					sair = true;
@@ -789,6 +810,12 @@ void Loja::interface(){
 					break;
 				case 2:
 					std::cout<<"Este código não está associado a nenhuma operação"<<std::endl;
+					break;
+				case 3:
+					std::cout<<"Não há nenhum animal cadastrado"<<std::endl;
+					break;
+				case 4:
+					std::cout<<"Não há nenhum funcionário cadastrado"<<std::endl;
 					break;
 				default:
 				std::cin.clear();
