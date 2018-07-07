@@ -125,6 +125,23 @@ void Loja::carregarFuncionarios(){
 	}
 }
 
+int Loja::invalidCount(){
+	int count=0;
+	for(auto it = funcionario_db.cbegin(); it != funcionario_db.cend(); ++it){
+    	if(it->second==nullptr){
+    		count++;
+    	}
+	}
+	return count;
+}
+
+void Loja::invalidCleanup(){
+	for(auto it = funcionario_db.cbegin(); it != funcionario_db.cend(); ++it){
+    	if(it->second==nullptr){
+    		funcionario_db.erase(it);
+    	}	
+    }
+}
 
 /**
  * Inicializa um map de animais com base em um arquivo previamente salvo
@@ -754,7 +771,8 @@ void Loja::interface(){
 
 
 	while(!sair){
-		std::cout<<funcionario_db.size()<<std::endl;
+		if(Loja::invalidCount()>0){Loja::invalidCleanup();}
+		std::cout<<invalidCount()<<std::endl;
 		std::cout   <<"1. Ver as informações de um animal (por ID)"<<std::endl
 					<<"2. Ver as informações de um funcionário (por ID)"<<std::endl
 					<<"3. Cadastrar um animal"<<std::endl

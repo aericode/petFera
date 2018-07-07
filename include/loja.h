@@ -41,6 +41,8 @@ public:
 	void removerFuncionario();
 	void removerAnimal();
 
+	int invalidCount();
+	void invalidCleanup();
 	void desvincularFuncionario(int);
 	void interface();
 };
