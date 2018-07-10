@@ -779,6 +779,8 @@ void Loja::interface(){
 
 }
 
+std::map<int, std::shared_ptr <Animal> > Loja::getAnimalDatabase(){return animal_db;}
+
 //Carrega os bancos de dados e interface ao inicializar
 Loja::Loja(){
 	Loja::carregarFuncionarios();

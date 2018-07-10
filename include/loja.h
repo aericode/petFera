@@ -42,6 +42,7 @@ public:
 	void removerAnimal();
 
 	void interface();
+	std::map<int, std::shared_ptr <Animal> > getAnimalDatabase();
 };
 
 
