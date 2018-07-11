@@ -12,9 +12,9 @@
 #include <string> 
 #include <memory>
 
-#include "../include/tratador.h"
-#include "../include/veterinario.h"
-#include "../include/animal.h"
+#include "tratador.h"
+#include "veterinario.h"
+#include "animal.h"
 
 Animal::Animal  (){};
 

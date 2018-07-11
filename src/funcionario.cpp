@@ -11,7 +11,7 @@
 #include <fstream>
 #include <string> 
 
-#include "../include/funcionario.h"
+#include "funcionario.h"
 
 Funcionario::Funcionario(){}
 Funcionario::~Funcionario(){}

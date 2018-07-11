@@ -1,4 +1,4 @@
-#include "../include/nativo.h"
+#include "nativo.h"
 #include <string>
 
 std::string Nativo::getUf_origem(){return m_uf_origem;}

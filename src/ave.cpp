@@ -7,7 +7,7 @@
   * @date		05/07/2018
   * @sa 		https://github.com/vloxflox/petFera
   */
-#include "../include/ave.h"
+#include "ave.h"
 #include <string>
 
 int Ave::getTamanho_bico(){return m_tamanho_bico;}

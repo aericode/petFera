@@ -7,7 +7,7 @@
   * @date		05/07/2018
   * @sa 		https://github.com/vloxflox/petFera
   */
-#include "../include/anfibio.h"
+#include "anfibio.h"
 #include <string>
 
 int Anfibio::getTotal_mudas(){return m_total_mudas;}

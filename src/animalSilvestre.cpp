@@ -1,4 +1,4 @@
-#include "../include/animalSilvestre.h"
+#include "animalSilvestre.h"
 #include <iostream>
 
 std::string AnimalSilvestre::getIbama(){return m_ibama;}

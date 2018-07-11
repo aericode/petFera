@@ -7,7 +7,7 @@
   * @date		05/07/2018
   * @sa 		https://github.com/vloxflox/petFera
   */
-#include "../include/reptil.h"
+#include "reptil.h"
 #include <string>
 
 bool Reptil::getVenenoso(){return m_venenoso;}

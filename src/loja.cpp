@@ -16,19 +16,19 @@
 #include <iterator>
 #include <ios>
 
-#include "../include/funcionario.h"
-#include "../include/veterinario.h"
-#include "../include/tratador.h"
-#include "../include/animal.h"
-#include "../include/reptil.h"
-#include "../include/anfibio.h"
-#include "../include/mamifero.h"
-#include "../include/animalSilvestre.h"
-#include "../include/exotico.h"
-#include "../include/nativo.h"
-#include "../include/aveExotica.h"
-#include "../include/aveNativa.h"
-#include "../include/loja.h"
+#include "funcionario.h"
+#include "veterinario.h"
+#include "tratador.h"
+#include "animal.h"
+#include "reptil.h"
+#include "anfibio.h"
+#include "mamifero.h"
+#include "animalSilvestre.h"
+#include "exotico.h"
+#include "nativo.h"
+#include "aveExotica.h"
+#include "aveNativa.h"
+#include "loja.h"
 
 
 /**

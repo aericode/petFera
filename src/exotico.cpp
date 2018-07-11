@@ -1,4 +1,4 @@
-#include "../include/exotico.h"
+#include "exotico.h"
 #include <string>
 
 std::string Exotico::getPais_origem(){return m_pais_origem;}

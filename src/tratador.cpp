@@ -7,8 +7,8 @@
   * @date		05/07/2018
   * @sa 		https://github.com/vloxflox/petFera
   */
-#include "../include/funcionario.h"
-#include "../include/tratador.h"
+#include "funcionario.h"
+#include "tratador.h"
 #include <iostream>
 #include <string>
 

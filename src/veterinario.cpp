@@ -7,8 +7,8 @@
   * @date		05/07/2018
   * @sa 		https://github.com/vloxflox/petFera
   */
-#include "../include/funcionario.h"
-#include "../include/veterinario.h"
+#include "funcionario.h"
+#include "veterinario.h"
 
 Veterinario::Veterinario(){}
 Veterinario::Veterinario(int id,std::string tipo_funcionario,std::string nome,std::string cpf
