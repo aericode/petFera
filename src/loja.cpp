@@ -779,13 +779,16 @@ void Loja::interface(){
 
 }
 
+/**
+ * Retorno para buscas em 
+ * @Brief Faz uma sequência de testes de inputs e limpeza de CIN para evitar crashes, quando estes ocorrem ele mostra uma mensagem e fecha o programa
+ */
 std::map<int, std::shared_ptr <Animal> > Loja::getAnimalDatabase(){return animal_db;}
 
 //Carrega os bancos de dados e interface ao inicializar
 Loja::Loja(){
 	Loja::carregarFuncionarios();
 	Loja::carregarAnimais();
-	Loja::interface();
 }
 //Salva o estado atual ao sair
 Loja::~Loja(){

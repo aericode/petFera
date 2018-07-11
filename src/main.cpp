@@ -19,6 +19,7 @@
 int main(){
 
 	Loja loja;
+	loja.interface();
 
     return 0;
 }
