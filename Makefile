@@ -8,7 +8,7 @@ CC = g++
 CFLAGS =  -Wall -std=c++11 -I$(INC_DIR)
 ARCHIVE = ar
 
-linux: petlib.so petfera
+linux: petlib.so petfera exportar
 
 petlib.so:  $(SRC_DIR)/animal.cpp  $(SRC_DIR)/anfibio.cpp  $(SRC_DIR)/mamifero.cpp  $(SRC_DIR)/ave.cpp  $(SRC_DIR)/reptil.cpp  $(SRC_DIR)/funcionario.cpp  $(SRC_DIR)/veterinario.cpp  $(SRC_DIR)/tratador.cpp  $(SRC_DIR)/animalSilvestre.cpp  $(SRC_DIR)/exotico.cpp  $(SRC_DIR)/aveExotica.cpp  $(SRC_DIR)/aveNativa.cpp  $(SRC_DIR)/loja.cpp  $(SRC_DIR)/nativo.cpp
 	$(CC) $(CFLAGS) -fPIC -c $(SRC_DIR)/animal.cpp -o $(OBJ_DIR)/animal.o
@@ -30,6 +30,9 @@ petlib.so:  $(SRC_DIR)/animal.cpp  $(SRC_DIR)/anfibio.cpp  $(SRC_DIR)/mamifero.c
 
 petfera:
 	$(CC) $(CFLAGS) $(SRC_DIR)/main.cpp $(LIB_DIR)/petlib.so -o $(BIN_DIR)/$@
+
+exportar:
+	$(CC) $(CFLAGS) $(SRC_DIR)/exportar.cpp $(LIB_DIR)/petlib.so -o $(BIN_DIR)/$@
 
 clean:
 	@echo "Removendo arquivos objeto e binarios"
